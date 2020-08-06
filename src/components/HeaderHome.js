@@ -49,7 +49,7 @@ function HeaderHome() {
               }}
               type="text"
               name="email"
-              value={input.email}
+              value={inputLogin.email}
               onChange={handleChangeLogin}
             />
           </div>
@@ -65,7 +65,7 @@ function HeaderHome() {
               }}
               type="password"
               name="password"
-              value={input.password}
+              value={inputLogin.password}
               onChange={handleChange}
             />
           </div>
