@@ -9,20 +9,12 @@ function HeaderHome() {
     email: "",
     password: "",
   });
-  const changeInputEmail = (event) => {
-    const newInput = {
+  const handleChange = (event) => {
+    setInput({
       ...input,
-      email: event.target.value,
-    };
-    setInput(newInput);
-  };
-  const changeInputPassword = (event) => {
-    const newInput = {
-      ...input,
-      password: event.target.value,
-    };
-    setInput(newInput);
-  };
+      [event.target.name]: event.target.value
+    })
+  }
   const closeModalLogin = () => {
     setShowModalLogin(false);
   };
@@ -58,7 +50,7 @@ function HeaderHome() {
               type="text"
               name="email"
               value={input.email}
-              onChange={changeInputEmail}
+              onChange={handleChange}
             />
           </div>
           <div className="mt-5">
@@ -74,7 +66,7 @@ function HeaderHome() {
               type="password"
               name="password"
               value={input.password}
-              onChange={changeInputPassword}
+              onChange={handleChange}
             />
           </div>
           <div className="mt-8">
