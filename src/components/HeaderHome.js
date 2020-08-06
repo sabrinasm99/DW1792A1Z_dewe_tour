@@ -5,13 +5,13 @@ import palmmodal from "../image/palmmodal.svg";
 
 function HeaderHome() {
   const [showModalLogin, setShowModalLogin] = useState(false);
-  const [input, setInput] = useState({
+  const [inputLogin, setInputLogin] = useState({
     email: "",
     password: "",
   });
-  const handleChange = (event) => {
-    setInput({
-      ...input,
+  const handleChangeLogin = (event) => {
+    setInputLogin({
+      ...inputLogin,
       [event.target.name]: event.target.value
     })
   }
@@ -50,7 +50,7 @@ function HeaderHome() {
               type="text"
               name="email"
               value={input.email}
-              onChange={handleChange}
+              onChange={handleChangeLogin}
             />
           </div>
           <div className="mt-5">
