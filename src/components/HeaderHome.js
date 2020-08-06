@@ -15,6 +15,12 @@ function HeaderHome() {
       [event.target.name]: event.target.value
     })
   }
+  const submitLogin = (event) => {
+    event.preventDefault();
+    localStorage.setItem('email', inputLogin.email);
+    alert('Success Login');
+    setShowModalLogin(false);
+  }
   const closeModalLogin = () => {
     setShowModalLogin(false);
   };
@@ -66,11 +72,12 @@ function HeaderHome() {
               type="password"
               name="password"
               value={inputLogin.password}
-              onChange={handleChange}
+              onChange={handleChangeLogin}
             />
           </div>
           <div className="mt-8">
             <button
+              onClick={submitLogin}
               className="w-full p-1 px-3 bg-purple-800 text-white focus:outline-none border rounded font-bold"
               style={{ backgroundColor: "#FFAF00", borderColor: "#FFAF00" }}
             >
