@@ -5,10 +5,10 @@ function TripCards(props) {
     return (
       <div key={val.id} className="bg-white rounded-md p-2 relative">
         <img src={val.img} className="w-full" />
-        <h4 className="text-black font-medium mt-1 text-left">{val.title}</h4>
+        <h4 className="text-black font-medium mt-1">{val.title}</h4>
         <div className="flex mt-2">
           <h4
-            className="font-medium w-1/2 text-left"
+            className="font-medium w-1/2"
             style={{ color: "#FFAF00" }}
           >
             {val.price}

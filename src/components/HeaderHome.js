@@ -85,7 +85,7 @@ function HeaderHome() {
         >
           <h1 className="text-black text-3xl font-bold mt-8">Login</h1>
           <div className="mt-12">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Email
             </label>
             <input
@@ -101,7 +101,7 @@ function HeaderHome() {
             />
           </div>
           <div className="mt-5">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Password
             </label>
             <input
@@ -170,7 +170,7 @@ function HeaderHome() {
         >
           <h1 className="text-black text-3xl font-bold mt-8">Register</h1>
           <div className="mt-12">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Full Name
             </label>
             <input
@@ -184,10 +184,10 @@ function HeaderHome() {
               value={inputRegister.fullname}
               onChange={handleChangeRegister}
             />
-            <h3 className="text-red-600 text-left text-sm">{warning}</h3>
+            <h3 className="text-red-600 text-sm">{warning}</h3>
           </div>
           <div className="mt-5">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Email
             </label>
             <input
@@ -203,7 +203,7 @@ function HeaderHome() {
             />
           </div>
           <div className="mt-5">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Password
             </label>
             <input
@@ -219,7 +219,7 @@ function HeaderHome() {
             />
           </div>
           <div className="mt-5">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Phone
             </label>
             <input
@@ -235,7 +235,7 @@ function HeaderHome() {
             />
           </div>
           <div className="mt-5">
-            <label className="text-black block text-left font-bold">
+            <label className="text-black block font-bold">
               Address
             </label>
             <textarea
@@ -258,10 +258,6 @@ function HeaderHome() {
               Register
             </button>
           </div>
-          <h3 className="text-sm mt-3 font-light" style={{ color: "#B1B1B1" }}>
-            Don't have an account? Click{" "}
-            <h3 className="font-bold inline">Here</h3>
-          </h3>
           <div className="absolute" style={{ top: 0, left: 0 }}>
             <img src={palmmodal} />
           </div>
@@ -314,7 +310,7 @@ function HeaderHome() {
               </button>
             </div>
           </div>
-          <div className="mt-5 text-left">
+          <div className="mt-5">
             <h1
               style={{ fontSize: "60px" }}
               className="tracking-wide font-bold"
@@ -326,7 +322,7 @@ function HeaderHome() {
             </h2>
           </div>
           <div className="mt-10">
-            <h1 style={{ fontSize: "17px" }} className="text-left">
+            <h1 style={{ fontSize: "17px" }}>
               Find great places to holiday
             </h1>
             <div className="flex mt-2 h-10">

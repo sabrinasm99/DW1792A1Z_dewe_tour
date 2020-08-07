@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderHome from '../components/HeaderHome';
-import FooterHome from '../components/FooterHome';
+import Footer from '../components/Footer';
 import MixCards from '../components/MixCards';
 import hibiscus from '../image/hibiscus.svg';
 import palm from '../image/palm.svg';
@@ -10,7 +10,7 @@ function Home() {
     <React.Fragment>
       <HeaderHome />
       <MixCards />
-      <FooterHome />
+      <Footer />
       <div className="absolute" style={{ top: "68%", right: 0 }}>
         <img src={hibiscus} />
       </div>

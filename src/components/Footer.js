@@ -2,7 +2,7 @@ import React from 'react'
 import leaf from "../image/leaf.svg";
 
 
-function FooterHome() {
+function Footer() {
     return (
         <div
         className="relative w-full mt-20 text-sm py-2 text-white"
@@ -16,4 +16,4 @@ function FooterHome() {
     )
 }
 
-export default FooterHome
+export default Footer
