@@ -5,7 +5,7 @@ function Cards(props) {
     return (
       <div
         key={val.id}
-        className="rounded-md bg-white py-12 px-8"
+        className="rounded-md bg-white py-12 px-8 text-center"
         style={{ height: "290px" }}
       >
         <img src={val.img} className="mx-auto" />
