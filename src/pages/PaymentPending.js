@@ -8,6 +8,7 @@ function PaymentPending() {
        <React.Fragment>
            <HeaderPage />
            <PaymentContent />
+           <Footer />
        </React.Fragment>
     )
 }

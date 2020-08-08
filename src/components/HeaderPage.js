@@ -1,11 +1,18 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import icon from "../image/icon.svg";
 import hibiscusmodal from "../image/hibiscusmodal.svg";
 import palmmodal from "../image/palmmodal.svg";
+import fotoprofile from "../image/fotoprofile.png";
+import user from "../image/user.svg";
+import bill from "../image/bill.svg";
+import logout from "../image/logout.svg";
+import triangle from "../image/triangle.svg";
 
 function HeaderPage() {
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalRegister, setShowModalRegister] = useState(false);
+  const [showModalUser, setShowModalUser] = useState(false);
   const [inputLogin, setInputLogin] = useState({
     email: "",
     password: "",
@@ -18,6 +25,7 @@ function HeaderPage() {
     address: "",
   });
   const [warning, setWarning] = useState("");
+  const location = useLocation();
   const handleChangeLogin = (event) => {
     setInputLogin({
       ...inputLogin,
@@ -283,22 +291,59 @@ function HeaderPage() {
 
       <div className="absolute px-16 flex top-0 w-full text-white">
         <img src={icon} />
-        <div className="flex items-center ml-auto mr-2">
-          <button
-            onClick={() => setShowModalLogin(true)}
-            className="border border-white py-1 px-6 font-medium text-sm rounded-md"
+        {localStorage.getItem("email") ? (
+          <div className="ml-auto flex items-center">
+            <img src={fotoprofile} 
+            className='cursor-pointer'
+            onClick={() => setShowModalUser(!showModalUser)} />
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center ml-auto mr-2">
+              <button
+                onClick={() => setShowModalLogin(true)}
+                className="border border-white py-1 px-6 font-medium text-sm rounded-md"
+              >
+                Login
+              </button>
+            </div>
+            <div className="flex items-center">
+              <button
+                onClick={() => setShowModalRegister(true)}
+                className="py-1 px-6 font-medium border text-sm rounded-md"
+                style={{ backgroundColor: "#FFAF00", borderColor: "#FFAF00" }}
+              >
+                Register
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+      <div
+        className={`${showModalUser ? 'block' : 'hidden'} absolute bg-white py-1 rounded font-bold`}
+        style={{ top: "75px", left: "1172px" }}
+      >
+        <div className="px-6">
+          <div className="flex py-1 cursor-pointer">
+            <img src={user} className='mr-2' />
+            <h2 className='flex items-center'>Profile</h2>
+          </div>
+          <div
+            className="flex py-1 cursor-pointer"
           >
-            Login
-          </button>
+            <img src={bill} className='mr-2' />
+            <h2 className=''>Pay</h2>
+          </div>
         </div>
-        <div className="flex items-center">
-          <button
-            onClick={() => setShowModalRegister(true)}
-            className="py-1 px-6 font-medium border text-sm rounded-md"
-            style={{ backgroundColor: "#FFAF00", borderColor: "#FFAF00" }}
-          >
-            Register
-          </button>
+        <hr />
+        <div className="px-6">
+          <div className="flex py-1 cursor-pointer">
+            <img src={logout} className='mr-2' />
+            <h2>Logout</h2>
+          </div>
+        </div>
+        <div className='absolute' style={{top:'-11px', right:'2px'}}>
+          <img src={triangle} />
         </div>
       </div>
       {modalLogin}
