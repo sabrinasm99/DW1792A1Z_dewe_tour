@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import sydneydetail from "../image/sydneydetail.png";
 import sydney1 from "../image/sydney1.png";
 import sydney2 from "../image/sydney2.png";
@@ -143,12 +144,14 @@ function DetailTripContent() {
         </div>
       </div>
       <div className="px-2 mt-4">
-        <button
-          className="text-white text-sm flex ml-auto px-8 py-1 font-semibold rounded focus:outline-none"
-          style={{ backgroundColor: "#FFAF00" }}
-        >
-          BOOK NOW
-        </button>
+        <Link to="/payment">
+          <button
+            className="text-white text-sm flex ml-auto px-8 py-1 font-semibold rounded focus:outline-none"
+            style={{ backgroundColor: "#FFAF00" }}
+          >
+            BOOK NOW
+          </button>
+        </Link>
       </div>
     </div>
   );

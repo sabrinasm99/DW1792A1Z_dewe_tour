@@ -3,7 +3,7 @@ import HeaderPage from '../components/HeaderPage';
 import Footer from '../components/Footer';
 import PaymentContent from '../components/PaymentContent';
 
-function PaymentPending() {
+function Payment() {
     return (
        <React.Fragment>
            <HeaderPage />
@@ -13,4 +13,4 @@ function PaymentPending() {
     )
 }
 
-export default PaymentPending
+export default Payment

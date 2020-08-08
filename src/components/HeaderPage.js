@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import icon from "../image/icon.svg";
 import hibiscusmodal from "../image/hibiscusmodal.svg";
 import palmmodal from "../image/palmmodal.svg";
@@ -25,7 +25,6 @@ function HeaderPage() {
     address: "",
   });
   const [warning, setWarning] = useState("");
-  const location = useLocation();
   const handleChangeLogin = (event) => {
     setInputLogin({
       ...inputLogin,
@@ -290,12 +289,16 @@ function HeaderPage() {
       ></div>
 
       <div className="absolute px-16 flex top-0 w-full text-white">
-        <img src={icon} />
+        <Link to="/">
+          <img src={icon} />
+        </Link>
         {localStorage.getItem("email") ? (
           <div className="ml-auto flex items-center">
-            <img src={fotoprofile} 
-            className='cursor-pointer'
-            onClick={() => setShowModalUser(!showModalUser)} />
+            <img
+              src={fotoprofile}
+              className="cursor-pointer"
+              onClick={() => setShowModalUser(!showModalUser)}
+            />
           </div>
         ) : (
           <>
@@ -320,29 +323,29 @@ function HeaderPage() {
         )}
       </div>
       <div
-        className={`${showModalUser ? 'block' : 'hidden'} absolute bg-white py-1 rounded font-bold`}
+        className={`${
+          showModalUser ? "block" : "hidden"
+        } absolute bg-white py-1 rounded font-bold`}
         style={{ top: "75px", left: "1172px" }}
       >
         <div className="px-6">
           <div className="flex py-1 cursor-pointer">
-            <img src={user} className='mr-2' />
-            <h2 className='flex items-center'>Profile</h2>
+            <img src={user} className="mr-2" />
+            <h2 className="flex items-center">Profile</h2>
           </div>
-          <div
-            className="flex py-1 cursor-pointer"
-          >
-            <img src={bill} className='mr-2' />
-            <h2 className=''>Pay</h2>
+          <div className="flex py-1 cursor-pointer">
+            <img src={bill} className="mr-2" />
+            <h2 className="">Pay</h2>
           </div>
         </div>
         <hr />
         <div className="px-6">
           <div className="flex py-1 cursor-pointer">
-            <img src={logout} className='mr-2' />
+            <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
         </div>
-        <div className='absolute' style={{top:'-11px', right:'2px'}}>
+        <div className="absolute" style={{ top: "-11px", right: "2px" }}>
           <img src={triangle} />
         </div>
       </div>
