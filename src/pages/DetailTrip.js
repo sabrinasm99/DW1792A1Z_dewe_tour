@@ -2,13 +2,13 @@ import React from "react";
 import HeaderPage from "../components/HeaderPage";
 import { tripCardList } from "../fakedata/TripCards";
 import DetailTripContent from "../components/DetailTripContent";
-import Footer from '../components/Footer';
-import hibiscus from '../image/hibiscus.svg';
-import palm from '../image/palm.svg';
+import Footer from "../components/Footer";
+import hibiscus from "../image/hibiscus.svg";
+import palm from "../image/palm.svg";
 
 function DetailTrip() {
   return (
-    <React.Fragment>
+    <>
       <HeaderPage />
       <DetailTripContent posts={tripCardList} />
       <Footer />
@@ -18,7 +18,7 @@ function DetailTrip() {
       <div className="absolute" style={{ top: "70%", left: 0 }}>
         <img src={palm} />
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

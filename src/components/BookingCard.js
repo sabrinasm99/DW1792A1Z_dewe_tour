@@ -102,12 +102,16 @@ function BookingCard() {
                   className={`${
                     location.pathname === "/profile"
                       ? "bg-green-100"
+                      : localStorage.status ||
+                        location.pathname === "/list-transaction"
+                      ? "bg-orange-100"
                       : "bg-red-100"
                   } mt-5 text-sm py-1 w-1/3 text-center rounded`}
                   style={
                     location.pathname === "/profile"
                       ? { color: "#0BDC5F" }
-                      : localStorage.status
+                      : localStorage.status ||
+                        location.pathname === "/list-transaction"
                       ? { color: "#FF9900" }
                       : { color: "#EC7A7A" }
                   }
@@ -115,6 +119,8 @@ function BookingCard() {
                   {`${
                     location.pathname === "/profile"
                       ? "Approve"
+                      : location.pathname === "/list-transaction"
+                      ? "Waiting Approve"
                       : statusTransaction
                   }`}
                 </div>
@@ -144,7 +150,10 @@ function BookingCard() {
               {location.pathname === "/profile" ? (
                 <img src={val.qrcode} className="ml-auto" />
               ) : (
-                <img src={val.paymentProof} className="border-2 border-black ml-auto" />
+                <img
+                  src={val.paymentProof}
+                  className="border-2 border-black ml-auto"
+                />
               )}
             </div>
           </div>
@@ -193,6 +202,20 @@ function BookingCard() {
               </h2>
             </div>
           </div>
+          <div
+            className={`${
+              location.pathname === "/list-transaction" ? "flex" : "hidden"
+            } mt-5 text-white`}
+          >
+            <div className="ml-auto">
+              <button className="px-3 py-1 font-semibold rounded mr-3" style={{ backgroundColor: "#FF0742" }}>
+                Cancel
+              </button>
+              <button className="px-3 py-1 font-semibold rounded" style={{ backgroundColor: "#0ACF83" }}>
+                Approve
+              </button>
+            </div>
+          </div>
         </div>
       );
     });
@@ -203,7 +226,9 @@ function BookingCard() {
       <button
         onClick={changeStatusTransaction}
         className={`${
-          localStorage.status || location.pathname === "/profile"
+          localStorage.status ||
+          location.pathname === "/profile" ||
+          location.pathname === "/list-transaction"
             ? "hidden"
             : "block"
         } flex ml-auto rounded px-16 py-2 text-white text-sm font-semibold`}

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { listTransaction } from "../fakedata/ListTransaction";
 import search from "../image/search.svg";
+import BookingCard from "../components/BookingCard";
 
 function ListTransactionContent() {
+  const [showModalApprove, setShowModalApprove] = useState(false);
+  const closeModalApprove = () => {
+    setShowModalApprove(!showModalApprove);
+  };
   let newListTransaction = listTransaction.map((val) => {
     return (
       <div
@@ -17,43 +22,75 @@ function ListTransactionContent() {
         <div className="w-1/6 p-3">{val.id}</div>
         <div className="w-1/6 p-3">{val.users}</div>
         <div className="w-1/6 p-3">{val.trip}</div>
+        <div className="w-1/6 p-3">{val.bukti}</div>
         <div
           className="w-1/6 p-3"
-        >
-          {val.bukti}
-        </div>
-        <div className="w-1/6 p-3"
-        style={
+          style={
             val.status === "Pending"
               ? { color: "#F7941E" }
               : val.status === "Approve"
               ? { color: "#0ACF83" }
               : { color: "#FF0742" }
-          }>{val.status}</div>
+          }
+        >
+          {val.status}
+        </div>
         <div className="w-1/6 p-3">
-          <img src={search} />
+          <img src={search} onClick={() => setShowModalApprove(!showModalApprove)} />
         </div>
       </div>
     );
   });
-  return (
-    <div className="mt-20 px-20 pb-10">
-      <h1 className="font-bold text-2xl">Incoming Transaction</h1>
-      <div className="bg-white rounded mt-5">
+  let modalApprove = null;
+  if (showModalApprove)
+    modalApprove = (
+      <>
         <div
-          className="flex border-b font-bold"
-          style={{ borderColor: "#B7B7B7" }}
+          className={`${showModalApprove ? "block" : "hidden"} fixed w-2/3`}
+          style={{
+            top: "50%",
+            left: "50%",
+            zIndex: 200,
+            transform: "translate(-50%, -50%)",
+          }}
         >
-          <div className="w-1/6 p-3">No</div>
-          <div className="w-1/6 p-3">Users</div>
-          <div className="w-1/6 p-3">Trip</div>
-          <div className="w-1/6 p-3">Bukti Transfer</div>
-          <div className="w-1/6 p-3">Status Payment</div>
-          <div className="w-1/6 p-3">Action</div>
+          <BookingCard />
         </div>
-        {newListTransaction}
+        <div
+          onClick={closeModalApprove}
+          style={{
+            position: "fixed",
+            zIndex: 199,
+            top: 0,
+            left: 0,
+            height: "100%",
+            width: "100%",
+            backgroundColor: "rgba(0,0,0,0.5)",
+          }}
+        />
+      </>
+    );
+  return (
+    <>
+      <div className="mt-20 px-20 pb-10">
+        <h1 className="font-bold text-2xl">Incoming Transaction</h1>
+        <div className="bg-white rounded mt-5">
+          <div
+            className="flex border-b font-bold"
+            style={{ borderColor: "#B7B7B7" }}
+          >
+            <div className="w-1/6 p-3">No</div>
+            <div className="w-1/6 p-3">Users</div>
+            <div className="w-1/6 p-3">Trip</div>
+            <div className="w-1/6 p-3">Bukti Transfer</div>
+            <div className="w-1/6 p-3">Status Payment</div>
+            <div className="w-1/6 p-3">Action</div>
+          </div>
+          {newListTransaction}
+        </div>
       </div>
-    </div>
+      {modalApprove}
+    </>
   );
 }
 

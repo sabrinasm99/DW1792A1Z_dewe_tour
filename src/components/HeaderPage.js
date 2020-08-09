@@ -44,7 +44,7 @@ function HeaderPage() {
     event.preventDefault();
     localStorage.setItem("email", inputLogin.email);
     setShowModalLogin(false);
-    history.push(currentPathname)
+    history.push(currentPathname);
   };
   const submitRegister = (event) => {
     event.preventDefault();
