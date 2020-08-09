@@ -47,3 +47,5 @@ export const detailTrip = [
     price: 12398000,
   },
 ];
+
+export const countryOptions = ['Indonesia', 'South Korea', 'Japan', 'Australia']

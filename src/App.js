@@ -8,6 +8,7 @@ import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import ListTransaction from "./pages/ListTransaction";
 import IncomeTrip from "./pages/IncomeTrip";
+import AddTrip from "./pages/AddTrip";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/list-transaction" component={ListTransaction} />
         <Route path="/income-trip" component={IncomeTrip} />
+        <Route path="/add-trip" component={AddTrip} />
       </Switch>
     </Router>
   );

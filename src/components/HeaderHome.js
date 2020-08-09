@@ -8,6 +8,7 @@ import user from "../image/user.svg";
 import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
+import journey from "../image/journey.svg";
 
 function HeaderHome() {
   const location = useLocation();
@@ -140,7 +141,7 @@ function HeaderHome() {
           </div>
           <h3 className="text-sm mt-3 font-light" style={{ color: "#B1B1B1" }}>
             Don't have an account? Click{" "}
-            <h3 className="font-bold inline">Here</h3>
+            <p className="font-bold inline">Here</p>
           </h3>
           <div className="absolute" style={{ top: 0, left: 0 }}>
             <img src={palmmodal} />
@@ -361,9 +362,11 @@ function HeaderHome() {
       </div>
       <div
         className={`${
-          showModalUser ? "block" : "hidden"
+          showModalUser && localStorage.email === "customer@gmail.com"
+            ? "block"
+            : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1172px" }}
+        style={{ top: "75px", left: "1150px" }}
       >
         <div className="px-6">
           <Link to="/profile">
@@ -376,6 +379,33 @@ function HeaderHome() {
             <div className="flex py-1 cursor-pointer">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
+            </div>
+          </Link>
+        </div>
+        <hr />
+        <div className="px-6">
+          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+            <img src={logout} className="mr-2" />
+            <h2>Logout</h2>
+          </div>
+        </div>
+        <div className="absolute" style={{ top: "-11px", right: "2px" }}>
+          <img src={triangle} />
+        </div>
+      </div>
+      <div
+        className={`${
+          showModalUser && localStorage.email === "admin@gmail.com"
+            ? "block"
+            : "hidden"
+        } absolute bg-white py-1 rounded font-bold`}
+        style={{ top: "75px", left: "1150px" }}
+      >
+        <div className="px-6">
+          <Link to="/income-trip">
+            <div className="flex py-1 cursor-pointer">
+              <img src={journey} className="mr-2" />
+              <h2 className="flex items-center">Trip</h2>
             </div>
           </Link>
         </div>

@@ -8,6 +8,7 @@ import user from "../image/user.svg";
 import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
+import journey from "../image/journey.svg";
 
 function HeaderPage() {
   const history = useHistory();
@@ -332,9 +333,11 @@ function HeaderPage() {
       </div>
       <div
         className={`${
-          showModalUser ? "block" : "hidden"
+          showModalUser && localStorage.email === "user@gmail.com"
+            ? "block"
+            : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1172px" }}
+        style={{ top: "75px", left: "1150px" }}
       >
         <div className="px-6">
           <Link to="/profile">
@@ -347,6 +350,33 @@ function HeaderPage() {
             <div className="flex py-1 cursor-pointer">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
+            </div>
+          </Link>
+        </div>
+        <hr />
+        <div className="px-6">
+          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+            <img src={logout} className="mr-2" />
+            <h2>Logout</h2>
+          </div>
+        </div>
+        <div className="absolute" style={{ top: "-11px", right: "2px" }}>
+          <img src={triangle} />
+        </div>
+      </div>
+      <div
+        className={`${
+          showModalUser && localStorage.email === "admin@gmail.com"
+            ? "block"
+            : "hidden"
+        } absolute bg-white py-1 rounded font-bold`}
+        style={{ top: "75px", left: "1150px" }}
+      >
+        <div className="px-6">
+          <Link to="/income-trip">
+            <div className="flex py-1 cursor-pointer">
+              <img src={journey} className="mr-2" />
+              <h2 className="flex items-center">Trip</h2>
             </div>
           </Link>
         </div>

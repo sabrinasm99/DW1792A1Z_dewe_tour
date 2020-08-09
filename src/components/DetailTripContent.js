@@ -20,7 +20,7 @@ function DetailTripContent() {
   };
   let newDetailTrip = detailTrip.map((val) => {
     return (
-      <>
+      <React.Fragment key={val.id}>
         <div className="px-2">
           <h1 className="text-3xl font-bold mt-10">{val.title}</h1>
           <h4 className="font-semibold" style={{ color: "#A8A8A8" }}>
@@ -93,14 +93,14 @@ function DetailTripContent() {
             </div>
           </div>
           <h3 className="font-bold text-sm mt-8">Description</h3>
-          <p className="text-xs" style={{ color: "#A8A8A8" }}>
+          <h4 className="text-xs" style={{ color: "#A8A8A8" }}>
             <p className="font-bold inline">{val.headDescription}</p>{" "}
             {val.description}
-          </p>
+          </h4>
           <div className="mt-5 flex">
             <h2 className="font-bold" style={{ color: "#FFAF00" }}>
               IDR. {val.price.toLocaleString()}{" "}
-              <h2 className="inline text-black">/ Person</h2>
+              <p className="inline text-black">/ Person</p>
             </h2>
             <div className="ml-auto grid grid-cols-3 gap-1 text-center">
               <button
@@ -132,7 +132,7 @@ function DetailTripContent() {
             </h2>
           </div>
         </div>
-      </>
+      </React.Fragment>
     );
   });
   return (
