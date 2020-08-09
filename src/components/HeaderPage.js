@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import icon from "../image/icon.svg";
 import hibiscusmodal from "../image/hibiscusmodal.svg";
 import palmmodal from "../image/palmmodal.svg";
@@ -10,6 +10,9 @@ import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
 
 function HeaderPage() {
+  const history = useHistory();
+  const location = useLocation();
+  const currentPathname = location.pathname;
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [showModalRegister, setShowModalRegister] = useState(false);
   const [showModalUser, setShowModalUser] = useState(false);
@@ -40,8 +43,8 @@ function HeaderPage() {
   const submitLogin = (event) => {
     event.preventDefault();
     localStorage.setItem("email", inputLogin.email);
-    alert("Success Login");
     setShowModalLogin(false);
+    history.push(currentPathname)
   };
   const submitRegister = (event) => {
     event.preventDefault();
@@ -71,6 +74,11 @@ function HeaderPage() {
     };
     setInputRegister(newInputRegister);
     setWarning("");
+  };
+
+  const submitLogout = () => {
+    localStorage.removeItem("email");
+    history.push("/");
   };
 
   let modalLogin = null;
@@ -329,18 +337,22 @@ function HeaderPage() {
         style={{ top: "75px", left: "1172px" }}
       >
         <div className="px-6">
-          <div className="flex py-1 cursor-pointer">
-            <img src={user} className="mr-2" />
-            <h2 className="flex items-center">Profile</h2>
-          </div>
-          <div className="flex py-1 cursor-pointer">
-            <img src={bill} className="mr-2" />
-            <h2 className="">Pay</h2>
-          </div>
+          <Link to="/profile">
+            <div className="flex py-1 cursor-pointer">
+              <img src={user} className="mr-2" />
+              <h2 className="flex items-center">Profile</h2>
+            </div>
+          </Link>
+          <Link to="/payment">
+            <div className="flex py-1 cursor-pointer">
+              <img src={bill} className="mr-2" />
+              <h2 className="">Pay</h2>
+            </div>
+          </Link>
         </div>
         <hr />
         <div className="px-6">
-          <div className="flex py-1 cursor-pointer">
+          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>

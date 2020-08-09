@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DetailTrip from "./pages/DetailTrip";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
+import ListTransaction from "./pages/ListTransaction";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/detail-trip" component={DetailTrip} />
         <Route path="/payment" component={Payment} />
         <Route path="/profile" component={Profile} />
+        <Route path='/list-transaction' component={ListTransaction} />
       </Switch>
     </Router>
   );
