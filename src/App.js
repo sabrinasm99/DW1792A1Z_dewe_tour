@@ -7,6 +7,7 @@ import DetailTrip from "./pages/DetailTrip";
 import Payment from "./pages/Payment";
 import Profile from "./pages/Profile";
 import ListTransaction from "./pages/ListTransaction";
+import IncomeTrip from "./pages/IncomeTrip";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/detail-trip" component={DetailTrip} />
         <Route path="/payment" component={Payment} />
         <Route path="/profile" component={Profile} />
-        <Route path='/list-transaction' component={ListTransaction} />
+        <Route path="/list-transaction" component={ListTransaction} />
+        <Route path="/income-trip" component={IncomeTrip} />
       </Switch>
     </Router>
   );
