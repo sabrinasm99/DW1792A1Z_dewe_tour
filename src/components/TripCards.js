@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function TripCards(props) {
   let tripCardList = props.posts.map((val) => {
     return (
-      <Link to="/detail-trip">
-        <div key={val.id} className="bg-white rounded-md p-2 relative">
+      <Link key={val.id} to="/detail-trip">
+        <div className="bg-white rounded-md p-2 relative">
           <img src={val.img} className="w-full" />
           <h4 className="text-black font-medium mt-1">{val.title}</h4>
           <div className="flex mt-2">

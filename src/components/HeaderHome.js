@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import {useHistory, useLocation, Link} from 'react-router-dom';
 import icon from "../image/icon.svg";
 import hibiscusmodal from "../image/hibiscusmodal.svg";
 import palmmodal from "../image/palmmodal.svg";
-
+import fotoprofile from "../image/fotoprofile.png";
+import user from "../image/user.svg";
+import bill from "../image/bill.svg";
+import logout from "../image/logout.svg";
+import triangle from "../image/triangle.svg";
 
 function HeaderHome() {
+  const location = useLocation();
+  const currentPathname = location.pathname;
+  const history = useHistory();
+  const [showModalUser, setShowModalUser] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
   const [inputLogin, setInputLogin] = useState({
     email: "",
@@ -25,27 +34,18 @@ function HeaderHome() {
       [event.target.name]: event.target.value,
     });
   };
-  const submitLogin = (event) => {
-    event.preventDefault();
-    localStorage.setItem("email", inputLogin.email);
-    alert("Success Login");
-    setShowModalLogin(false);
-  };
-  const closeModalLogin = () => {
-    setShowModalLogin(false);
-    const newInputLogin = {
-      email: "",
-      password: "",
-    };
-    setInputLogin(newInputLogin);
-  };
   const handleChangeRegister = (event) => {
     setInputRegister({
       ...inputRegister,
       [event.target.name]: event.target.value,
     });
   };
-
+  const submitLogin = (event) => {
+    event.preventDefault();
+    localStorage.setItem("email", inputLogin.email);
+    closeModalLogin();
+    history.push(currentPathname)
+  };
   const submitRegister = (event) => {
     event.preventDefault();
     if (!inputRegister.fullname) {
@@ -55,7 +55,14 @@ function HeaderHome() {
       setShowModalRegister(false);
     }
   };
-
+  const closeModalLogin = () => {
+    setShowModalLogin(false);
+    const newInputLogin = {
+      email: "",
+      password: "",
+    };
+    setInputLogin(newInputLogin);
+  };
   const closeModalRegister = () => {
     setShowModalRegister(false);
     const newInputRegister = {
@@ -67,6 +74,12 @@ function HeaderHome() {
     };
     setInputRegister(newInputRegister);
     setWarning("");
+  };
+
+  const submitLogout = () => {
+    localStorage.removeItem("email");
+    setShowModalUser(!showModalUser)
+    history.push("/");
   };
   let modalLogin = null;
   if (showModalLogin)
@@ -284,6 +297,18 @@ function HeaderHome() {
         <div className="px-16 relative">
           <div className="flex">
             <img src={icon} />
+            {localStorage.getItem('email') ? (
+              <div className="ml-auto flex items-center">
+              <img
+                src={fotoprofile}
+                className="cursor-pointer"
+                onClick={() => setShowModalUser(!showModalUser)}
+              />
+            </div>
+            )
+          :
+          (
+            <>
             <div className="flex items-center ml-auto mr-2">
               <button
                 onClick={() => setShowModalLogin(true)}
@@ -301,6 +326,8 @@ function HeaderHome() {
                 Register
               </button>
             </div>
+            </>
+          )}
           </div>
           <div className="mt-5">
             <h1
@@ -331,6 +358,37 @@ function HeaderHome() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div
+        className={`${
+          showModalUser ? "block" : "hidden"
+        } absolute bg-white py-1 rounded font-bold`}
+        style={{ top: "75px", left: "1172px" }}
+      >
+        <div className="px-6">
+          <Link to="/profile">
+            <div className="flex py-1 cursor-pointer">
+              <img src={user} className="mr-2" />
+              <h2 className="flex items-center">Profile</h2>
+            </div>
+          </Link>
+          <Link to="/payment">
+            <div className="flex py-1 cursor-pointer">
+              <img src={bill} className="mr-2" />
+              <h2 className="">Pay</h2>
+            </div>
+          </Link>
+        </div>
+        <hr />
+        <div className="px-6">
+          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+            <img src={logout} className="mr-2" />
+            <h2>Logout</h2>
+          </div>
+        </div>
+        <div className="absolute" style={{ top: "-11px", right: "2px" }}>
+          <img src={triangle} />
         </div>
       </div>
       {modalLogin}
