@@ -362,7 +362,7 @@ function HeaderHome() {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.email === "customer@gmail.com"
+          showModalUser && localStorage.email === "user@gmail.com"
             ? "block"
             : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
