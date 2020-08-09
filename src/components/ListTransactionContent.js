@@ -36,7 +36,11 @@ function ListTransactionContent() {
           {val.status}
         </div>
         <div className="w-1/6 p-3">
-          <img src={search} onClick={() => setShowModalApprove(!showModalApprove)} />
+          <img
+            src={search}
+            className="cursor-pointer"
+            onClick={() => setShowModalApprove(!showModalApprove)}
+          />
         </div>
       </div>
     );

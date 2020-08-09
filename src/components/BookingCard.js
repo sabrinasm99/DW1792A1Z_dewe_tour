@@ -191,8 +191,7 @@ function BookingCard() {
             </div>
           </div>
           <div className="flex font-bold">
-            <div className="w-2/3">{""}</div>
-            <div className="w-1/3 flex pt-2">
+            <div className="w-1/3 ml-auto flex pt-2">
               <h2 className="w-1/2">Total</h2>
               <h2 className="w-1/2">
                 :{" "}
