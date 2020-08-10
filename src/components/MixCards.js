@@ -1,6 +1,6 @@
 import React from "react";
-import Cards from "./Cards";
-import TripCards from "./TripCards";
+import Cards from "./subcomponents/Cards";
+import TripCards from "./subcomponents/TripCards";
 import { cardList } from "../fakedata/Cards";
 import { tripCardList } from "../fakedata/TripCards";
 

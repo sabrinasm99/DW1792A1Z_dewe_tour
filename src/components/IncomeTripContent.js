@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TripCards from "../components/TripCards";
+import TripCards from "./subcomponents/TripCards";
 import { tripCardList } from "../fakedata/TripCards";
 
 function IncomeTripContent() {

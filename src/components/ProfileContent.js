@@ -4,7 +4,7 @@ import email from "../image/email.svg";
 import phone from "../image/phone.svg";
 import place from "../image/place.svg";
 import userprofile from "../image/userprofile.png";
-import BookingCard from "./BookingCard";
+import BookingCard from "./subcomponents/BookingCard";
 
 function ProfileContent() {
   return (

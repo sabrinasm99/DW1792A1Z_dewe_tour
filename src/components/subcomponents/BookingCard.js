@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { userDataTrip } from "../fakedata/DataTrip";
+import { userDataTrip } from "../../fakedata/DataTrip";
 
 function BookingCard() {
   const [statusTransaction, setStatusTransaction] = useState("Waiting Payment");

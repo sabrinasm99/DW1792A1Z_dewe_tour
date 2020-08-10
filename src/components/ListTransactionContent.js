@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { listTransaction } from "../fakedata/ListTransaction";
 import search from "../image/search.svg";
-import BookingCard from "../components/BookingCard";
+import BookingCard from "./subcomponents/BookingCard";
 
 function ListTransactionContent() {
   const [showModalApprove, setShowModalApprove] = useState(false);
