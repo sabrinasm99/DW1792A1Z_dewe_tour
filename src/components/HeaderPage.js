@@ -44,8 +44,11 @@ function HeaderPage() {
   const submitLogin = (event) => {
     event.preventDefault();
     localStorage.setItem("email", inputLogin.email);
+    if (localStorage.email === "admin@gmail.com") {
+      history.push("/profile");
+    }
+    else history.push(currentPathname);
     setShowModalLogin(false);
-    history.push(currentPathname);
   };
   const submitRegister = (event) => {
     event.preventDefault();

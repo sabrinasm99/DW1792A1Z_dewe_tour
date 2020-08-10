@@ -45,7 +45,11 @@ function HeaderHome() {
     event.preventDefault();
     localStorage.setItem("email", inputLogin.email);
     closeModalLogin();
-    history.push(currentPathname);
+    if (localStorage.email === "admin@gmail.com") {
+      history.push("/list-transaction");
+    } else {
+      history.push(currentPathname);
+    }
   };
   const submitRegister = (event) => {
     event.preventDefault();
