@@ -1,11 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function TripCards(props) {
+  const history = useHistory();
+  const clickDetail = (id) => {
+    history.push(`/detail-trip/${id}`)
+  }
   let tripCardList = props.posts.map((val) => {
     return (
-      <Link key={val.id} to="/detail-trip">
-        <div className="bg-white rounded-md p-2 relative">
+        <div key={val.id} 
+        onClick={() => {clickDetail(val.id)}}
+        className="bg-white rounded-md p-2 relative">
           <img src={val.img} className="w-full" />
           <h4 className="text-black font-medium mt-1">{val.title}</h4>
           <div className="flex mt-2">
@@ -26,7 +31,6 @@ function TripCards(props) {
             {val.code}
           </div>
         </div>
-      </Link>
     );
   });
   return <div className="grid grid-cols-3 gap-20 mt-20">{tripCardList}</div>;

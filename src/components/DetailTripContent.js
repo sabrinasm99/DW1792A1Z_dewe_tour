@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { detailTrip } from "../fakedata/DataTrip";
 import hotel from "../image/hotel.svg";
 import plane from "../image/plane.svg";
@@ -8,6 +8,7 @@ import time from "../image/time.svg";
 import calendar from "../image/calendar.svg";
 
 function DetailTripContent() {
+  const param = useParams();
   const [qty, setQty] = useState(1);
   const addQty = () => {
     setQty(qty + 1);
@@ -18,7 +19,7 @@ function DetailTripContent() {
       setQty(qty - 1);
     }
   };
-  let newDetailTrip = detailTrip.map((val) => {
+  let newDetailTrip = detailTrip.filter(val => val.id === +param.id).map((val) => {
     return (
       <React.Fragment key={val.id}>
         <div className="px-2">
