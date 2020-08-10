@@ -9,6 +9,8 @@ import Profile from "./pages/Profile";
 import ListTransaction from "./pages/ListTransaction";
 import IncomeTrip from "./pages/IncomeTrip";
 import AddTrip from "./pages/AddTrip";
+import PrivateRouteUser from "./utils/PrivateRouteUser";
+import PrivateRouteAdmin from "./utils/PrivateRouteAdmin";
 
 function App() {
   return (
@@ -16,11 +18,11 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/detail-trip/:id" exact component={DetailTrip} />
-        <Route path="/payment" component={Payment} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/list-transaction" component={ListTransaction} />
-        <Route path="/income-trip" component={IncomeTrip} />
-        <Route path="/add-trip" component={AddTrip} />
+        <PrivateRouteUser path="/payment" component={Payment} />
+        <PrivateRouteUser path="/profile" component={Profile} />
+        <PrivateRouteAdmin path="/list-transaction" component={ListTransaction} />
+        <PrivateRouteAdmin path="/income-trip" component={IncomeTrip} />
+        <PrivateRouteAdmin path="/add-trip" component={AddTrip} />
       </Switch>
     </Router>
   );

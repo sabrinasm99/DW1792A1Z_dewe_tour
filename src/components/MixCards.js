@@ -1,7 +1,7 @@
 import React from "react";
 import MenuCards from "./subcomponents/MenuCards";
 import TripCards from "./subcomponents/TripCards";
-import { cardList } from "../fakedata/Cards";
+import { cardList } from "../fakedata/MenuCards";
 import { tripCardList } from "../fakedata/TripCards";
 
 function MixCards() {

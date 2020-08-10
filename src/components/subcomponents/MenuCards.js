@@ -1,6 +1,6 @@
 import React from "react";
 
-function Cards(props) {
+function MenuCards(props) {
   let cardList = props.posts.map((val) => {
     return (
       <div
@@ -19,4 +19,4 @@ function Cards(props) {
   return <div className="grid grid-cols-4 gap-24">{cardList}</div>;
 }
 
-export default Cards;
+export default MenuCards;
