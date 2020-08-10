@@ -42,14 +42,12 @@ function BookingCard() {
           <h3>Your payment will be confirmed within 1 x 24 hours</h3>
           <h3>
             To see orders click{" "}
-            <Link to="/profile">
-              <h3
+              <p
                 onClick={changeModalPayment}
                 className="inline font-bold cursor-pointer"
               >
                 Here
-              </h3>{" "}
-            </Link>
+              </p>{" "}
             thank you
           </h3>
         </div>
@@ -86,7 +84,7 @@ function BookingCard() {
           </div>
           <div className="flex">
             <h4 className="ml-auto" style={{ color: "#878787" }}>
-              <h4 className="font-bold inline">{val.bookingDay}</h4>,{" "}
+              <p className="font-bold inline">{val.bookingDay}</p>,{" "}
               {val.bookingDate}
             </h4>
           </div>
@@ -195,9 +193,9 @@ function BookingCard() {
               <h2 className="w-1/2">Total</h2>
               <h2 className="w-1/2">
                 :{" "}
-                <h2 className="inline" style={{ color: "#FF0000" }}>
+                <p className="inline" style={{ color: "#FF0000" }}>
                   IDR. {val.total}
-                </h2>
+                </p>
               </h2>
             </div>
           </div>
