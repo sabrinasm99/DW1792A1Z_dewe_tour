@@ -1,7 +1,23 @@
-import React from "react";
-import { countryOptions } from "../fakedata/DataTrip";
+import React, { useState } from "react";
 
-function AddTripContent() {
+function AddTripContent({ posts }) {
+  const [newTrip, setNewTrip] = useState({
+    title: "",
+    countryId: "",
+    accomodation: "",
+    transportation: "",
+    eat: "",
+    day: "",
+    night: "",
+    dateTrip: "",
+    price: "",
+    quota: "",
+    description: "",
+  });
+  const handleChange = (e) => {
+    setNewTrip({ ...newTrip, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
       <div className="mt-20 px-24">
@@ -13,6 +29,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Title Trip</label>
             <input
               type="text"
+              name="title"
+              value={newTrip.title}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -30,8 +49,12 @@ function AddTripContent() {
               }}
             >
               <option> </option>
-              {countryOptions.map((val) => {
-                return <option key={val} value={val}>{val}</option>;
+              {posts.data.data.map((val) => {
+                return (
+                  <option key={val.id} name="countryId" value={val.id}>
+                    {val.id}: {val.name}
+                  </option>
+                );
               })}
             </select>
           </div>
@@ -39,6 +62,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Accomodation</label>
             <input
               type="text"
+              name="accomodation"
+              value={newTrip.accomodation}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -50,6 +76,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Transportation</label>
             <input
               type="text"
+              name="transportation"
+              value={newTrip.transportation}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -61,6 +90,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Eat</label>
             <input
               type="text"
+              name="eat"
+              value={newTrip.eat}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -74,6 +106,9 @@ function AddTripContent() {
               <div className="mr-12 flex">
                 <input
                   type="number"
+                  name="day"
+                  value={newTrip.day}
+                  onChange={handleChange}
                   className="border block rounded focus:outline-none mr-3"
                   style={{
                     backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -85,6 +120,9 @@ function AddTripContent() {
               <div className="flex">
                 <input
                   type="number"
+                  name="night"
+                  value={newTrip.night}
+                  onChange={handleChange}
                   className="border block rounded focus:outline-none mr-3"
                   style={{
                     backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -99,6 +137,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Date Trip</label>
             <input
               type="text"
+              name="dateTrip"
+              value={newTrip.dateTrip}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -110,6 +151,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Price</label>
             <input
               type="text"
+              name="price"
+              value={newTrip.price}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -121,6 +165,9 @@ function AddTripContent() {
             <label className="font-bold pl-1">Quota</label>
             <input
               type="text"
+              name="quota"
+              value={newTrip.quota}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",
@@ -131,6 +178,9 @@ function AddTripContent() {
           <div className="mt-5">
             <label className="font-bold pl-1">Description</label>
             <textarea
+              name="description"
+              value={newTrip.description}
+              onChange={handleChange}
               className="border block w-full rounded pl-1 focus:outline-none mt-2"
               style={{
                 backgroundColor: "rgba(196, 196, 196, 0.5)",

@@ -1,42 +1,64 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { detailTrip } from "../fakedata/DataTrip";
+import { Link } from "react-router-dom";
 import hotel from "../image/hotel.svg";
 import plane from "../image/plane.svg";
 import meal from "../image/meal.svg";
 import time from "../image/time.svg";
 import calendar from "../image/calendar.svg";
+import photo1 from "../image/sydneydetail.png";
+import photo2 from "../image/sydney1.png";
+import photo3 from "../image/sydney2.png";
+import photo4 from "../image/sydney3.png";
 
-function DetailTripContent() {
-  const param = useParams();
-  const [qty, setQty] = useState(1);
+function DetailTripContent(props) {
+  let oriPrice = props.posts.data.data.price;
+  const [input, setInput] = useState({
+    counterQty: 1,
+    total: oriPrice,
+    status: "Waiting Payment",
+  });
+
   const addQty = () => {
-    setQty(qty + 1);
+    const newInput = {
+      ...input,
+      counterQty: input.counterQty + 1,
+      total: input.total + oriPrice,
+    };
+    setInput(newInput);
   };
   const minQty = () => {
-    if (qty === 1) setQty(qty);
+    if (input.counterQty === 1)
+      setInput({ ...input, counterQty: input.counterQty });
     else {
-      setQty(qty - 1);
+      const newInput = {
+        ...input,
+        counterQty: input.counterQty - 1,
+        total: input.total - oriPrice,
+      };
+      setInput(newInput);
     }
   };
-  let newDetailTrip = detailTrip.filter(val => val.id === +param.id).map((val) => {
-    return (
-      <React.Fragment key={val.id}>
+
+  let detail = props.posts.data.data;
+
+  return (
+    <div className="px-56">
+      <>
         <div className="px-2">
-          <h1 className="text-3xl font-bold mt-10">{val.title}</h1>
+          <h1 className="text-3xl font-bold mt-10">{detail.title}</h1>
           <h4 className="font-semibold" style={{ color: "#A8A8A8" }}>
-            {val.country}
+            {detail.country.name}
           </h4>
-          <img src={val.photo1} className="w-full mt-5" />
+          <img src={photo1} className="w-full mt-5" />
           <div className="mt-4 grid grid-cols-3 gap-4">
             <div className="w-full">
-              <img src={val.photo2} className="w-full" />
+              <img src={photo2} className="w-full" />
             </div>
             <div className="w-full">
-              <img src={val.photo3} className="w-full" />
+              <img src={photo3} className="w-full" />
             </div>
             <div className="w-full relative">
-              <img src={val.photo4} className="w-full" />
+              <img src={photo4} className="w-full" />
               <div
                 className="absolute text-lg text-white font-bold"
                 style={{ top: "50%", left: "50%" }}
@@ -53,7 +75,7 @@ function DetailTripContent() {
               </h4>
               <div className="flex mt-1">
                 <img src={hotel} className="mr-2" />
-                <h5 className="font-bold text-sm">{val.accomodation}</h5>
+                <h5 className="font-bold text-sm">{detail.accomodation}</h5>
               </div>
             </div>
             <div>
@@ -62,7 +84,7 @@ function DetailTripContent() {
               </h4>
               <div className="flex mt-1">
                 <img src={plane} className="mr-2" />
-                <h5 className="font-bold text-sm">{val.transportation}</h5>
+                <h5 className="font-bold text-sm">{detail.transportation}</h5>
               </div>
             </div>
             <div>
@@ -71,7 +93,7 @@ function DetailTripContent() {
               </h4>
               <div className="flex mt-1">
                 <img src={meal} className="mr-2" />
-                <h5 className="font-bold text-sm">{val.eat}</h5>
+                <h5 className="font-bold text-sm">{detail.eat}</h5>
               </div>
             </div>
             <div>
@@ -80,7 +102,9 @@ function DetailTripContent() {
               </h4>
               <div className="flex mt-1">
                 <img src={time} className="mr-2" />
-                <h5 className="font-bold text-sm">{val.duration}</h5>
+                <h5 className="font-bold text-sm">
+                  {detail.day} Days {detail.night} Nights
+                </h5>
               </div>
             </div>
             <div>
@@ -89,18 +113,20 @@ function DetailTripContent() {
               </h4>
               <div className="flex mt-1">
                 <img src={calendar} className="mr-2" />
-                <h5 className="font-bold text-sm">{val.dateTrip}</h5>
+                <h5 className="font-bold text-sm">{detail.dateTrip}</h5>
               </div>
             </div>
           </div>
           <h3 className="font-bold text-sm mt-8">Description</h3>
           <h4 className="text-xs" style={{ color: "#A8A8A8" }}>
-            <p className="font-bold inline">{val.headDescription}</p>{" "}
-            {val.description}
+            <p className="font-bold inline">
+              {detail.description.split(" ")[0]}
+            </p>{" "}
+            {detail.description.split(" ").slice(1).join(" ")}
           </h4>
           <div className="mt-5 flex">
             <h2 className="font-bold" style={{ color: "#FFAF00" }}>
-              IDR. {val.price.toLocaleString()}{" "}
+              IDR. {detail.price.toLocaleString()}{" "}
               <p className="inline text-black">/ Person</p>
             </h2>
             <div className="ml-auto grid grid-cols-3 gap-1 text-center">
@@ -111,7 +137,7 @@ function DetailTripContent() {
               >
                 -
               </button>
-              <h2 className="font-bold">{qty}</h2>
+              <h2 className="font-bold">{input.counterQty}</h2>
               <button
                 onClick={addQty}
                 className="font-bold text-white px-1 rounded-full text-lg focus:outline-none"
@@ -129,16 +155,11 @@ function DetailTripContent() {
           <div className="py-2 px-1 font-bold flex">
             <h2 className="w-1/2">Total</h2>
             <h2 className="w-1/2 text-right" style={{ color: "#FFAF00" }}>
-              IDR. 12,398,000
+              IDR. {input.total.toLocaleString()}
             </h2>
           </div>
         </div>
-      </React.Fragment>
-    );
-  });
-  return (
-    <div className="px-56">
-      {newDetailTrip}
+      </>
       <div className="px-2 mt-4">
         <Link to="/payment">
           <button

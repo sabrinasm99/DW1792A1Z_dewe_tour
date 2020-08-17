@@ -15,7 +15,7 @@ function Footer() {
     >
       Copyright @ 2020 Dewe Tour - Your Name - NIS. All Rights reserved
       <div className="absolute" style={{ bottom: 0, right: 0 }}>
-        <img src={leaf} />
+        <img src={leaf} alt="leaf" />
       </div>
     </div>
   );

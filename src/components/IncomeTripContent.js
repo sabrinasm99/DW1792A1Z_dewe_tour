@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TripCards from "./subcomponents/TripCards";
-import { tripCardList } from "../fakedata/TripCards";
 
-function IncomeTripContent() {
+function IncomeTripContent({ posts }) {
   return (
     <>
-      <div className="mt-20">
-        <div className="px-32">
+      <div className="mt-20 pb-12">
+        <div className="px-24">
           <div className="flex">
             <h1 className="text-2xl font-bold">Income Trip</h1>
             <div className="ml-auto flex items-center">
@@ -22,8 +21,8 @@ function IncomeTripContent() {
             </div>
           </div>
         </div>
-        <div className="px-40 -mt-12">
-          <TripCards posts={tripCardList} />
+        <div className="px-32 -mt-12">
+          <TripCards posts={posts} />
         </div>
       </div>
     </>

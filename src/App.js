@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "./assets/main.css";
 import Home from "./pages/Home";
@@ -9,15 +9,34 @@ import Profile from "./pages/Profile";
 import ListTransaction from "./pages/ListTransaction";
 import IncomeTrip from "./pages/IncomeTrip";
 import AddTrip from "./pages/AddTrip";
-import PrivateRouteUser from "./utils/PrivateRouteUser";
-import PrivateRouteAdmin from "./utils/PrivateRouteAdmin";
+import ModalLogin from "./components/subcomponents/ModalLogin";
+import ModalRegister from "./components/subcomponents/ModalRegister";
+import PrivateRouteUser from "./settings/PrivateRouteUser";
+import PrivateRouteAdmin from "./settings/PrivateRouteAdmin";
 
 function App() {
+  const [showModalLogin, setShowModalLogin] = useState(false);
+  const [showModalRegister, setShowModalRegister] = useState(false);
+
   return (
     <Router>
+      {showModalLogin && <ModalLogin setShowModalLogin={setShowModalLogin} />}
+      {showModalRegister && (
+        <ModalRegister setShowModalRegister={setShowModalRegister} />
+      )}
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/detail-trip/:id" exact component={DetailTrip} />
+        <Route path="/" exact>
+          <Home
+            setShowModalLogin={setShowModalLogin}
+            setShowModalRegister={setShowModalRegister}
+          />
+        </Route>
+        <Route path="/detail-trip/:id">
+          <DetailTrip
+            setShowModalLogin={setShowModalLogin}
+            setShowModalRegister={setShowModalRegister}
+          />
+        </Route>
         <PrivateRouteUser path="/payment" component={Payment} />
         <PrivateRouteUser path="/profile" component={Profile} />
         <PrivateRouteAdmin path="/list-transaction" component={ListTransaction} />
