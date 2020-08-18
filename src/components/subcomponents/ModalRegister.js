@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import hibiscusmodal from "../../image/hibiscusmodal.svg";
 import palmmodal from "../../image/palmmodal.svg";
+import axios from "axios";
 
-function ModalRegister({setShowModalRegister}) {
+function ModalRegister({ setShowModalRegister }) {
   const [inputRegister, setInputRegister] = useState({
-    fullname: "",
+    fullName: "",
     email: "",
     password: "",
     phone: "",
@@ -20,26 +21,31 @@ function ModalRegister({setShowModalRegister}) {
 
   const submitRegister = (event) => {
     event.preventDefault();
-    if (!inputRegister.fullname) {
+    if (!inputRegister.fullName) {
       setWarning("Please fill out this field");
     } else {
-      alert("Success Register");
-      setShowModalRegister(false);
+      console.log(inputRegister);
+      axios
+        .post("http://localhost:5000/api/v1/register", inputRegister)
+        .then((res) => {
+          alert(res.data.message);
+          setShowModalRegister(false);
+        });
     }
   };
 
-//   const closeModalRegister = () => {
-//     setShowModalRegister(false);
-//     const newInputRegister = {
-//       fullname: "",
-//       email: "",
-//       password: "",
-//       phone: "",
-//       address: "",
-//     };
-//     setInputRegister(newInputRegister);
-//     setWarning("");
-//   };
+  //   const closeModalRegister = () => {
+  //     setShowModalRegister(false);
+  //     const newInputRegister = {
+  //       fullname: "",
+  //       email: "",
+  //       password: "",
+  //       phone: "",
+  //       address: "",
+  //     };
+  //     setInputRegister(newInputRegister);
+  //     setWarning("");
+  //   };
   return (
     <>
       <div
@@ -67,8 +73,8 @@ function ModalRegister({setShowModalRegister}) {
               borderColor: "rgba(210, 210, 210, 0.25)",
             }}
             type="text"
-            name="fullname"
-            value={inputRegister.fullname}
+            name="fullName"
+            value={inputRegister.fullName}
             onChange={handleChangeRegister}
           />
           <h3 className="text-red-600 text-sm">{warning}</h3>

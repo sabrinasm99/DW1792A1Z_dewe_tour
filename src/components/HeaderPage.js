@@ -14,6 +14,8 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
 
   const submitLogout = () => {
     localStorage.removeItem("email");
+    localStorage.removeItem("token");
+    setShowModalUser(!showModalUser);
     history.push("/");
   };
 
