@@ -31,12 +31,13 @@ function ModalRegister({ setShowModalRegister }) {
       axios
         .post("http://localhost:5000/api/v1/register", inputRegister)
         .then((res) => {
-          console.log(res)
+          console.log(res);
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("role", res.data.data.role);
+          localStorage.setItem("name", res.data.data.fullName);
           setShowModalRegister(false);
-          history.push(currentPathname)
+          history.push(currentPathname);
         });
     }
   };

@@ -13,8 +13,6 @@ import ModalLogin from "./components/subcomponents/ModalLogin";
 import ModalRegister from "./components/subcomponents/ModalRegister";
 import PrivateRouteUser from "./settings/PrivateRouteUser";
 import PrivateRouteAdmin from "./settings/PrivateRouteAdmin";
-import Country from "./pages/Country";
-import AddCountry from "./pages/AddCountry";
 
 function App() {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -44,8 +42,6 @@ function App() {
         <PrivateRouteAdmin path="/list-transaction" component={ListTransaction} />
         <PrivateRouteAdmin path="/income-trip" component={IncomeTrip} />
         <PrivateRouteAdmin path="/add-trip" component={AddTrip} />
-        <PrivateRouteAdmin path="/country" component={Country} />
-        <PrivateRouteAdmin path="/add-country" component={AddCountry} />
       </Switch>
     </Router>
   );

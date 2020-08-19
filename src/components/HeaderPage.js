@@ -16,6 +16,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
     localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("name");
     setShowModalUser(!showModalUser);
     history.push("/");
   };

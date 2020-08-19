@@ -15,6 +15,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
     localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("name");
     setShowModalUser(!showModalUser);
     history.push("/");
   };
@@ -96,26 +97,26 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       <div
         className={`${
           showModalUser && localStorage.role === "User" ? "block" : "hidden"
-        } absolute bg-white py-1 rounded font-bold`}
+        } absolute bg-white py-3 rounded font-bold`}
         style={{ top: "75px", left: "1150px" }}
       >
-        <div className="px-6">
+        <div className="px-4">
           <Link to="/profile">
-            <div className="flex py-1 cursor-pointer">
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={user} className="mr-2" />
               <h2 className="flex items-center">Profile</h2>
             </div>
           </Link>
           <Link to="/payment">
-            <div className="flex py-1 cursor-pointer">
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
             </div>
           </Link>
         </div>
         <hr />
-        <div className="px-6">
-          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+        <div className="px-4">
+          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
@@ -127,20 +128,20 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       <div
         className={`${
           showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
-        } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1150px" }}
+        } absolute bg-white py-3 rounded font-bold`}
+        style={{ top: "75px", left: "1140px" }}
       >
-        <div className="px-6">
+        <div className="px-4">
           <Link to="/income-trip">
-            <div className="flex py-1 cursor-pointer">
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={journey} className="mr-2" />
               <h2 className="flex items-center">Trip</h2>
             </div>
           </Link>
         </div>
         <hr />
-        <div className="px-6">
-          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+        <div className="px-4">
+          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
