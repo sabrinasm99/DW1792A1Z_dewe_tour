@@ -15,6 +15,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
   const submitLogout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setShowModalUser(!showModalUser);
     history.push("/");
   };
@@ -67,7 +68,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.email !== "harisman@gmail.com"
+          showModalUser && localStorage.role === "User"
             ? "block"
             : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
@@ -100,11 +101,11 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.email === "harisman@gmail.com"
+          showModalUser && localStorage.role === "Admin"
             ? "block"
             : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1150px" }}
+        style={{ top: "75px", left: "1173px" }}
       >
         <div className="px-6">
           <Link to="/income-trip">

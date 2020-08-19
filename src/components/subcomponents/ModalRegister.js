@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import hibiscusmodal from "../../image/hibiscusmodal.svg";
 import palmmodal from "../../image/palmmodal.svg";
 import axios from "axios";
 
 function ModalRegister({ setShowModalRegister }) {
+  const location = useLocation();
+  const history = useHistory();
+  const currentPathname = location.pathname;
   const [inputRegister, setInputRegister] = useState({
     fullName: "",
     email: "",
@@ -24,12 +28,15 @@ function ModalRegister({ setShowModalRegister }) {
     if (!inputRegister.fullName) {
       setWarning("Please fill out this field");
     } else {
-      console.log(inputRegister);
       axios
         .post("http://localhost:5000/api/v1/register", inputRegister)
         .then((res) => {
-          alert(res.data.message);
+          console.log(res)
+          localStorage.setItem("email", res.data.data.email);
+          localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("role", res.data.data.role);
           setShowModalRegister(false);
+          history.push(currentPathname)
         });
     }
   };

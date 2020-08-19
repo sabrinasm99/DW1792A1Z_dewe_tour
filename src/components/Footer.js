@@ -9,7 +9,7 @@ function Footer() {
       className={`${
         location.pathname === "/payment"
           ? "absolute bottom-0"
-          : "relative mt-20"
+          : location.pathname==='/list-transaction'? 'relative mt-32' : "relative mt-20"
       } w-full text-sm py-2 text-white text-center`}
       style={{ backgroundColor: "#FFAF00" }}
     >

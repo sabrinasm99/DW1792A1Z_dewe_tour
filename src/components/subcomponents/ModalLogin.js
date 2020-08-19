@@ -21,33 +21,18 @@ function ModalLogin({ setShowModalLogin }) {
   };
   const submitLogin = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/v1/login', inputLogin).then(res => {
-      localStorage.setItem('email', res.data.data.email);
-      localStorage.setItem('token', res.data.data.token)
+    axios.post("http://localhost:5000/api/v1/login", inputLogin).then((res) => {
+      localStorage.setItem("email", res.data.data.email);
+      localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("role", res.data.data.role);
       setShowModalLogin(false);
-      if (localStorage.email !== 'harisman@gmail.com') {
+      if (localStorage.role !== "Admin") {
         history.push(currentPathname);
       } else {
-        history.push('/list-transaction');
+        history.push("/list-transaction");
       }
-    })
+    });
   };
-
-  // const handleSubmitLogin = async () => {
-  //   console.log('HAI')
-  //   console.log(inputLogin)
-  //   const result = await fetch("http://localhost:5000/api/v1/login", {
-  //     method: "POST",
-  //     body: JSON.stringify(inputLogin),
-  //     headers: new Headers({
-  //       "Content-Type": "Application/JSON",
-  //     })
-  //   })
-  //   return result;
-  // }
-
-  // const [handleLogin, {status, data, error}] = useMutation(handleSubmitLogin)
-  // console.log(data)
 
   return (
     <>
@@ -105,7 +90,8 @@ function ModalLogin({ setShowModalLogin }) {
           </button>
         </div>
         <h3 className="text-sm mt-3 font-light" style={{ color: "#B1B1B1" }}>
-          Don't have an account? Click <p className="font-bold inline cursor-pointer">Here</p>
+          Don't have an account? Click{" "}
+          <p className="font-bold inline cursor-pointer">Here</p>
         </h3>
         <div className="absolute" style={{ top: 0, left: 0 }}>
           <img src={palmmodal} />

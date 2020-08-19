@@ -38,7 +38,7 @@ function TripCards({ posts }) {
             className="absolute bg-white text-black font-bold rounded-sm text-xs py-1 px-2"
             style={{ right: "1.4%", top: "9%" }}
           >
-            14/15
+            12/{val.quota}
           </div>
         </div>
       );

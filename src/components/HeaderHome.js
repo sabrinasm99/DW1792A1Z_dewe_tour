@@ -14,6 +14,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
   const submitLogout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setShowModalUser(!showModalUser);
     history.push("/");
   };
@@ -94,7 +95,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.email !== 'harisman@gmail.com' ? "block" : "hidden"
+          showModalUser && localStorage.role === "User" ? "block" : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
         style={{ top: "75px", left: "1150px" }}
       >
@@ -125,9 +126,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.email === "harisman@gmail.com"
-            ? "block"
-            : "hidden"
+          showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
         style={{ top: "75px", left: "1150px" }}
       >

@@ -3,12 +3,12 @@ import { listTransaction } from "../fakedata/ListTransaction";
 import search from "../image/search.svg";
 import BookingCard from "./subcomponents/BookingCard";
 
-function ListTransactionContent() {
+function ListTransactionContent({posts}) {
   const [showModalApprove, setShowModalApprove] = useState(false);
   const closeModalApprove = () => {
     setShowModalApprove(!showModalApprove);
   };
-  let newListTransaction = listTransaction.map((val) => {
+  let newListTransaction = posts.data.data.map((val) => {
     return (
       <div
         key={val.id}
@@ -20,13 +20,13 @@ function ListTransactionContent() {
         }
       >
         <div className="w-1/6 p-3">{val.id}</div>
-        <div className="w-1/6 p-3">{val.users}</div>
-        <div className="w-1/6 p-3">{val.trip}</div>
-        <div className="w-1/6 p-3">{val.bukti}</div>
+        <div className="w-1/6 p-3">{val.name}</div>
+        <div className="w-1/6 p-3">{val.trip.title}</div>
+        <div className="w-1/6 p-3">{val.attachment}</div>
         <div
           className="w-1/6 p-3"
           style={
-            val.status === "Pending"
+            val.status === "Waiting Approve"
               ? { color: "#F7941E" }
               : val.status === "Approve"
               ? { color: "#0ACF83" }
