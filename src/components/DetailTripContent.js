@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import axios from "axios";
 import hotel from "../image/hotel.svg";
 import plane from "../image/plane.svg";
 import meal from "../image/meal.svg";
@@ -12,12 +13,33 @@ import photo4 from "../image/sydney3.png";
 
 function DetailTripContent(props) {
   let oriPrice = props.posts.data.data.price;
+  const history = useHistory();
+  const { name, token } = localStorage;
+  const { id } = useParams();
   const [input, setInput] = useState({
+    name,
     counterQty: 1,
     total: oriPrice,
     status: "Waiting Payment",
+    tripId: +id,
   });
-
+  
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const submitBooking = (e) => {
+    e.preventDefault();
+  console.log(input)
+  console.log(config)
+    axios
+      .post("http://localhost:5000/api/v1/transaction", input, config)
+      .then((res) => {
+        history.push(`/payment/${res.data.data.id}`);
+      })
+      .catch((err) => console.log(err));
+  };
   const addQty = () => {
     const newInput = {
       ...input,
@@ -161,14 +183,13 @@ function DetailTripContent(props) {
         </div>
       </>
       <div className="px-2 mt-4">
-        <Link to="/payment">
-          <button
-            className="text-white text-sm flex ml-auto px-8 py-1 font-semibold rounded focus:outline-none"
-            style={{ backgroundColor: "#FFAF00" }}
-          >
-            BOOK NOW
-          </button>
-        </Link>
+        <button
+          className="text-white text-sm flex ml-auto px-8 py-1 font-semibold rounded focus:outline-none"
+          style={{ backgroundColor: "#FFAF00" }}
+          onClick={submitBooking}
+        >
+          BOOK NOW
+        </button>
       </div>
     </div>
   );

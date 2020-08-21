@@ -1,10 +1,10 @@
 import React from "react";
 import BookingCard from "./subcomponents/BookingCard";
-function PaymentContent() {
+function PaymentContent({ posts }) {
   return (
     <>
       <div className="px-56 mt-12">
-        <BookingCard />
+        <BookingCard posts={posts} />
       </div>
     </>
   );

@@ -7,15 +7,15 @@ import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
 import journey from "../image/journey.svg";
+import { FaUserCircle } from "react-icons/fa";
 
 function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
   const history = useHistory();
+  const { image } = localStorage;
+
   const [showModalUser, setShowModalUser] = useState(false);
   const submitLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("name");
+    localStorage.clear();
     setShowModalUser(!showModalUser);
     history.push("/");
   };
@@ -34,11 +34,28 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
             <img src={icon} />
             {localStorage.email ? (
               <div className="ml-auto flex items-center">
-                <img
-                  src={fotoprofile}
-                  className="cursor-pointer"
-                  onClick={() => setShowModalUser(!showModalUser)}
-                />
+                {image !== "null" ? (
+                  <img
+                    src={`http://localhost:5000/image/${image}`}
+                    className="rounded-full border-2 cursor-pointer"
+                    style={{
+                      borderColor: "#FFAF00",
+                      width: "50px",
+                      height: "50px",
+                    }}
+                    onClick={() => setShowModalUser(!showModalUser)}
+                  />
+                ) : (
+                  <FaUserCircle
+                    className="text-gray-700 bg-white rounded-full border-2 cursor-pointer"
+                    style={{
+                      borderColor: "#FFAF00",
+                      width: "44px",
+                      height: "44px",
+                    }}
+                    onClick={() => setShowModalUser(!showModalUser)}
+                  />
+                )}
               </div>
             ) : (
               <>
@@ -98,7 +115,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
         className={`${
           showModalUser && localStorage.role === "User" ? "block" : "hidden"
         } absolute bg-white py-3 rounded font-bold`}
-        style={{ top: "75px", left: "1150px" }}
+        style={{ top: "75px", left: "1143px" }}
       >
         <div className="px-4">
           <Link to="/profile">
@@ -116,7 +133,10 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
         </div>
         <hr />
         <div className="px-4">
-          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
+          <div
+            className="flex py-1 px-3 cursor-pointer hover:bg-blue-200"
+            onClick={submitLogout}
+          >
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
@@ -141,7 +161,10 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
         </div>
         <hr />
         <div className="px-4">
-          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
+          <div
+            className="flex py-1 px-3 cursor-pointer hover:bg-blue-200"
+            onClick={submitLogout}
+          >
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>

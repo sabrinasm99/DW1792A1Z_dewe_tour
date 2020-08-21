@@ -7,16 +7,15 @@ import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
 import journey from "../image/journey.svg";
+import { FaUserCircle } from "react-icons/fa";
 
 function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
   const [showModalUser, setShowModalUser] = useState(false);
   const history = useHistory();
+  const { role, image } = localStorage;
 
   const submitLogout = () => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("name");
+    localStorage.clear();
     setShowModalUser(!showModalUser);
     history.push("/");
   };
@@ -34,16 +33,33 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       ></div>
 
       <div className="absolute px-16 flex top-0 w-full text-white">
-        <Link to="/">
+        <Link to={role === "Admin" ? "/list-transaction" : "/"}>
           <img src={icon} />
         </Link>
         {localStorage.getItem("email") ? (
           <div className="ml-auto flex items-center">
-            <img
-              src={fotoprofile}
-              className="cursor-pointer"
-              onClick={() => setShowModalUser(!showModalUser)}
-            />
+            {image !== "null" ? (
+              <img
+                src={`http://localhost:5000/image/${image}`}
+                className="rounded-full border-2 cursor-pointer"
+                style={{
+                  borderColor: "#FFAF00",
+                  width: "50px",
+                  height: "50px",
+                }}
+                onClick={() => setShowModalUser(!showModalUser)}
+              />
+            ) : (
+              <FaUserCircle
+                className="text-gray-700 bg-white rounded-full border-2 cursor-pointer"
+                style={{
+                  borderColor: "#FFAF00",
+                  width: "44px",
+                  height: "44px",
+                }}
+                onClick={() => setShowModalUser(!showModalUser)}
+              />
+            )}
           </div>
         ) : (
           <>
@@ -69,9 +85,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.role === "User"
-            ? "block"
-            : "hidden"
+          showModalUser && localStorage.role === "User" ? "block" : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
         style={{ top: "75px", left: "1150px" }}
       >
@@ -102,9 +116,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       </div>
       <div
         className={`${
-          showModalUser && localStorage.role === "Admin"
-            ? "block"
-            : "hidden"
+          showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
         style={{ top: "75px", left: "1173px" }}
       >

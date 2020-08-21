@@ -37,7 +37,7 @@ function App() {
             setShowModalRegister={setShowModalRegister}
           />
         </Route>
-        <PrivateRouteUser path="/payment" component={Payment} />
+        <PrivateRouteUser path="/payment/:id" component={Payment} />
         <PrivateRouteUser path="/profile" component={Profile} />
         <PrivateRouteAdmin path="/list-transaction" component={ListTransaction} />
         <PrivateRouteAdmin path="/income-trip" component={IncomeTrip} />

@@ -13,6 +13,7 @@ function ModalRegister({ setShowModalRegister }) {
     email: "",
     password: "",
     phone: "",
+    gender: "",
     address: "",
   });
   const [warning, setWarning] = useState("");
@@ -36,6 +37,9 @@ function ModalRegister({ setShowModalRegister }) {
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("role", res.data.data.role);
           localStorage.setItem("name", res.data.data.fullName);
+          localStorage.setItem("gender", res.data.data.gender);
+          localStorage.setItem("id", res.data.data.id);
+          localStorage.setItem("image", res.data.data.image);
           setShowModalRegister(false);
           history.push(currentPathname);
         });
@@ -72,7 +76,7 @@ function ModalRegister({ setShowModalRegister }) {
         <h1 className="text-black text-3xl font-bold mt-8 text-center">
           Register
         </h1>
-        <div className="mt-12">
+        <div className="mt-6">
           <label className="text-black block font-bold">Full Name</label>
           <input
             className="text-gray-800 w-full border pl-1 focus:outline-none rounded"
@@ -87,7 +91,7 @@ function ModalRegister({ setShowModalRegister }) {
           />
           <h3 className="text-red-600 text-sm">{warning}</h3>
         </div>
-        <div className="mt-5">
+        <div className="mt-4">
           <label className="text-black block font-bold">Email</label>
           <input
             className="text-gray-800 w-full border pl-1 focus:outline-none rounded"
@@ -101,7 +105,7 @@ function ModalRegister({ setShowModalRegister }) {
             onChange={handleChangeRegister}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-4">
           <label className="text-black block font-bold">Password</label>
           <input
             className="text-gray-800 w-full border pl-1 focus:outline-none rounded"
@@ -115,7 +119,7 @@ function ModalRegister({ setShowModalRegister }) {
             onChange={handleChangeRegister}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-4">
           <label className="text-black block font-bold">Phone</label>
           <input
             className="text-gray-800 w-full border pl-1 focus:outline-none rounded"
@@ -129,7 +133,23 @@ function ModalRegister({ setShowModalRegister }) {
             onChange={handleChangeRegister}
           />
         </div>
-        <div className="mt-5">
+        <div className="mt-4">
+          <label className="text-black block font-bold">Gender</label>
+          <select
+            name="gender"
+            value={inputRegister.gender}
+            className="text-gray-800 w-full border pl-1 focus:outline-none rounded"
+            style={{
+              backgroundColor: "rgba(210, 210, 210, 0.25)",
+              borderColor: "rgba(210, 210, 210, 0.25)",
+            }}
+            onChange={handleChangeRegister}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div className="mt-4">
           <label className="text-black block font-bold">Address</label>
           <textarea
             className="text-gray-800 w-full border pl-1 focus:outline-none rounded"

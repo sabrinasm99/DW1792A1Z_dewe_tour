@@ -56,7 +56,6 @@ function AddTripContent({ posts }) {
     formData.append("price", inputTrip.price);
     formData.append("quota", inputTrip.quota);
     formData.append("description", inputTrip.description);
-    console.log(formData);
     axios
       .post("http://localhost:5000/api/v1/trip", formData, config)
       .then((res) => {
@@ -77,7 +76,7 @@ function AddTripContent({ posts }) {
         setInputTrip(newInputTrip);
         setFileObj(null);
         setFileURL(null);
-        alert("Success Add Trip");
+        alert(res.data.message);
       })
       .catch((err) => console.log(err));
   };
