@@ -6,6 +6,7 @@ import place from "../image/place.svg";
 import userprofile from "../image/userprofile.png";
 import BookingCard from "./subcomponents/BookingCard";
 import axios from "axios";
+import { useQuery } from "react-query";
 
 function ProfileContent({ posts }) {
   const detail = posts.data.data;
@@ -15,13 +16,31 @@ function ProfileContent({ posts }) {
     fileURL: null,
   });
   const [showModalPhoto, setShowModalPhoto] = useState(false);
-  const { id, token, image } = localStorage;
+  const { token, image, userId } = localStorage;
 
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
+  const getData = async () => {
+    const result = await axios.get(
+      `http://localhost:5000/api/v1/transaction-by-name/${userId}`,
+      config
+    );
+    return result;
+  };
+
+  const { isLoading, data, error } = useQuery(
+    "detailTransactionByName",
+    getData
+  );
+  if (isLoading)
+    return (
+      <div className="flex justify-center">
+        <h1 className="text-2xl font-semibold">Loading...</h1>
+      </div>
+    );
 
   const openModalPhoto = (id) => {
     axios
@@ -62,7 +81,7 @@ function ProfileContent({ posts }) {
     let formData = new FormData();
     if (currentEdit.fileObj) formData.append("image", currentEdit.fileObj);
     axios
-      .patch(`http://localhost:5000/api/v1/user/${id}`, formData, config)
+      .patch(`http://localhost:5000/api/v1/user/${userId}`, formData, config)
       .then((res) => {
         localStorage.removeItem("image");
         localStorage.setItem("image", res.data.data.image);
@@ -237,23 +256,27 @@ function ProfileContent({ posts }) {
                   </span>
                 </div>
               )}
-              <div className='mt-auto'>
-              <button
-                className="w-full py-2 mt-3 text-white text-center rounded font-semibold cursor-pointer focus:outline-none"
-                style={{ backgroundColor: "#FFAF00" }}
-                onClick={() => openModalPhoto(id)}
-              >
-                Change Profile Photo
-              </button>
+              <div className="mt-auto">
+                <button
+                  className="w-full py-2 mt-3 text-white text-center rounded font-semibold cursor-pointer focus:outline-none"
+                  style={{ backgroundColor: "#FFAF00" }}
+                  onClick={() => openModalPhoto(userId)}
+                >
+                  Change Profile Photo
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="mt-20 px-40">
+      <div className="mt-20 px-40">
         <h1 className="text-2xl font-bold">History Trip</h1>
-        <BookingCard />
-      </div> */}
+        {data.data.data.length > 0 ? (
+          <BookingCard posts={data} />
+        ) : (
+          <div className="mt-8">No Transaction</div>
+        )}
+      </div>
       {modalPhoto}
     </>
   );

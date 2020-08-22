@@ -12,7 +12,7 @@ import { FaUserCircle } from "react-icons/fa";
 function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
   const [showModalUser, setShowModalUser] = useState(false);
   const history = useHistory();
-  const { role, image } = localStorage;
+  const { role, image, orderId } = localStorage;
 
   const submitLogout = () => {
     localStorage.clear();
@@ -96,7 +96,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
               <h2 className="flex items-center">Profile</h2>
             </div>
           </Link>
-          <Link to="/payment">
+          <Link to={`/payment/${orderId}`}>
             <div className="flex py-1 cursor-pointer">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
@@ -118,7 +118,7 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
         className={`${
           showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
         } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1173px" }}
+        style={{ top: "75px", left: "1150px" }}
       >
         <div className="px-6">
           <Link to="/income-trip">

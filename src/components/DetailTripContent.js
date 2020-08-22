@@ -14,16 +14,17 @@ import photo4 from "../image/sydney3.png";
 function DetailTripContent(props) {
   let oriPrice = props.posts.data.data.price;
   const history = useHistory();
-  const { name, token } = localStorage;
+  const { token, userId } = localStorage;
   const { id } = useParams();
   const [input, setInput] = useState({
-    name,
+    userId: +userId,
     counterQty: 1,
     total: oriPrice,
     status: "Waiting Payment",
     tripId: +id,
+    bookingDate: (new Date()).toString().split(" ").slice(0, 4).join(" "),
   });
-  
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -31,11 +32,10 @@ function DetailTripContent(props) {
   };
   const submitBooking = (e) => {
     e.preventDefault();
-  console.log(input)
-  console.log(config)
     axios
       .post("http://localhost:5000/api/v1/transaction", input, config)
       .then((res) => {
+        localStorage.setItem('orderId', res.data.data.id)
         history.push(`/payment/${res.data.data.id}`);
       })
       .catch((err) => console.log(err));

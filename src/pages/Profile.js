@@ -6,14 +6,14 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 function Profile() {
-  const { id, token } = localStorage;
+  const { userId, token } = localStorage;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
   const getData = async () => {
-    const result = await axios.get(`http://localhost:5000/api/v1/user/${id}`, config);
+    const result = await axios.get(`http://localhost:5000/api/v1/user/${userId}`, config);
     return result;
   };
 

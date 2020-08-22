@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import { listTransaction } from "../fakedata/ListTransaction";
 import search from "../image/search.svg";
 import BookingCard from "./subcomponents/BookingCard";
+import { useQuery } from "react-query";
+import axios from "axios";
 
-function ListTransactionContent({posts}) {
+function ListTransactionContent({ posts }) {
   const [showModalApprove, setShowModalApprove] = useState(false);
+  const [detailTransaction, setDetailTransaction] = useState({});
   const closeModalApprove = () => {
     setShowModalApprove(!showModalApprove);
+  };
+
+  const { token } = localStorage;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const clickDetail = (id) => {
+    axios
+      .get(`http://localhost:5000/api/v1/transaction/${id}`, config)
+      .then((res) => {
+        setDetailTransaction(res);
+        setShowModalApprove(!showModalApprove);
+      })
+      .catch((err) => console.log(err));
   };
   let newListTransaction = posts.data.data.map((val) => {
     return (
@@ -20,7 +39,7 @@ function ListTransactionContent({posts}) {
         }
       >
         <div className="w-1/6 p-3">{val.id}</div>
-        <div className="w-1/6 p-3">{val.name}</div>
+        <div className="w-1/6 p-3">{val.user.fullName}</div>
         <div className="w-1/6 p-3">{val.trip.title}</div>
         <div className="w-1/6 p-3">{val.attachment}</div>
         <div
@@ -39,7 +58,7 @@ function ListTransactionContent({posts}) {
           <img
             src={search}
             className="cursor-pointer"
-            onClick={() => setShowModalApprove(!showModalApprove)}
+            onClick={() => clickDetail(val.id)}
           />
         </div>
       </div>
@@ -58,7 +77,7 @@ function ListTransactionContent({posts}) {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <BookingCard />
+          <BookingCard posts={detailTransaction} setShowModalApprove={setShowModalApprove} />
         </div>
         <div
           onClick={closeModalApprove}
@@ -86,7 +105,7 @@ function ListTransactionContent({posts}) {
             <div className="w-1/6 p-3">No</div>
             <div className="w-1/6 p-3">Users</div>
             <div className="w-1/6 p-3">Trip</div>
-            <div className="w-1/6 p-3">Bukti Transfer</div>
+            <div className="w-1/6 p-3">Payment Proof</div>
             <div className="w-1/6 p-3">Status Payment</div>
             <div className="w-1/6 p-3">Action</div>
           </div>

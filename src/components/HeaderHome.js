@@ -11,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
   const history = useHistory();
-  const { image } = localStorage;
+  const { image, orderId } = localStorage;
 
   const [showModalUser, setShowModalUser] = useState(false);
   const submitLogout = () => {
@@ -124,7 +124,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
               <h2 className="flex items-center">Profile</h2>
             </div>
           </Link>
-          <Link to="/payment">
+          <Link to={`/payment/${orderId}`}>
             <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>

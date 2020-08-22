@@ -25,9 +25,7 @@ function ModalLogin({ setShowModalLogin }) {
       localStorage.setItem("email", res.data.data.email);
       localStorage.setItem("token", res.data.data.token);
       localStorage.setItem("role", res.data.data.role);
-      localStorage.setItem("name", res.data.data.fullName);
-      localStorage.setItem("gender", res.data.data.gender);
-      localStorage.setItem("id", res.data.data.id);
+      localStorage.setItem("userId", res.data.data.id);
       localStorage.setItem("image", res.data.data.image);
       setShowModalLogin(false);
       if (localStorage.role !== "Admin") {
