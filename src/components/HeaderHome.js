@@ -36,7 +36,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
               <div className="ml-auto flex items-center">
                 {image !== "null" ? (
                   <img
-                    src={`http://localhost:5000/image/${image}`}
+                    src={`https://backend-dewetour.herokuapp.com/image/${image}`}
                     className="rounded-full border-2 cursor-pointer"
                     style={{
                       borderColor: "#FFAF00",

@@ -24,7 +24,7 @@ function ProfileContent({ posts }) {
   };
   const getData = async () => {
     const result = await axios.get(
-      `http://localhost:5000/api/v1/transaction-approve/${userId}`,
+      `https://backend-dewetour.herokuapp.com/api/v1/transaction-approve/${userId}`,
       config
     );
     return result;
@@ -43,7 +43,7 @@ function ProfileContent({ posts }) {
 
   const openModalPhoto = (id) => {
     axios
-      .get(`http://localhost:5000/api/v1/user/${id}`, config)
+      .get(`https://backend-dewetour.herokuapp.com/api/v1/user/${id}`, config)
       .then((res) => {
         const { image } = res.data.data;
         setShowModalPhoto(!showModalPhoto);
@@ -80,7 +80,7 @@ function ProfileContent({ posts }) {
     let formData = new FormData();
     if (currentEdit.fileObj) formData.append("image", currentEdit.fileObj);
     axios
-      .patch(`http://localhost:5000/api/v1/user/${userId}`, formData, config)
+      .patch(`https://backend-dewetour.herokuapp.com/api/v1/user/${userId}`, formData, config)
       .then((res) => {
         localStorage.removeItem("image");
         localStorage.setItem("image", res.data.data.image);
@@ -106,7 +106,7 @@ function ProfileContent({ posts }) {
   };
 
   let modalPhoto = null;
-  let srcImg = `http://localhost:5000/image/${currentEdit.image}`;
+  let srcImg = `https://backend-dewetour.herokuapp.com/image/${currentEdit.image}`;
   if (currentEdit.fileObj) {
     srcImg = currentEdit.fileblob;
   }
@@ -232,7 +232,7 @@ function ProfileContent({ posts }) {
             <div className="w-1/3 flex flex-col">
               {image !== "null" ? (
                 <img
-                  src={`http://localhost:5000/image/${image}`}
+                  src={`https://backend-dewetour.herokuapp.com/image/${image}`}
                   className="rounded"
                 />
               ) : (

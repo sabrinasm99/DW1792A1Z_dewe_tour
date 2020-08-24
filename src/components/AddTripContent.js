@@ -56,7 +56,7 @@ function AddTripContent({ posts }) {
     formData.append("quota", inputTrip.quota);
     formData.append("description", inputTrip.description);
     axios
-      .post("http://localhost:5000/api/v1/trip", formData, config)
+      .post("https://backend-dewetour.herokuapp.com/api/v1/trip", formData, config)
       .then((res) => {
         const newInputTrip = {
           title: "",

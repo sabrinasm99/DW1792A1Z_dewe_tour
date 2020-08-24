@@ -19,7 +19,7 @@ function ListTransactionContent({ posts }) {
 
   const clickDetail = (id) => {
     axios
-      .get(`http://localhost:5000/api/v1/transaction/${id}`, config)
+      .get(`https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`, config)
       .then((res) => {
         setDetailTransaction(res);
         setShowModalApprove(!showModalApprove);

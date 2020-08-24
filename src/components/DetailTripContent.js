@@ -36,7 +36,7 @@ function DetailTripContent({ posts, setShowModalLogin }) {
       setShowModalLogin(true);
     } else {
       axios
-        .post("http://localhost:5000/api/v1/transaction", input, config)
+        .post("https://backend-dewetour.herokuapp.com/api/v1/transaction", input, config)
         .then((res) => {
           history.push(`/payment/${userId}`);
         })

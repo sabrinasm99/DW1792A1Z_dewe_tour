@@ -13,7 +13,7 @@ function Profile() {
     },
   };
   const getData = async () => {
-    const result = await axios.get(`http://localhost:5000/api/v1/user/${userId}`, config);
+    const result = await axios.get(`https://backend-dewetour.herokuapp.com/api/v1/user/${userId}`, config);
     return result;
   };
 

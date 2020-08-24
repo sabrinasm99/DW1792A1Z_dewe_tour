@@ -38,7 +38,7 @@ function BookingCard({ posts, setShowModalApprove }) {
 
   const openModalPhoto = (id) => {
     axios
-      .get(`http://localhost:5000/api/v1/transaction/${id}`, config)
+      .get(`https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`, config)
       .then((res) => {
         const { id, attachment } = res.data.data;
         const newCurrentEdit = {
@@ -60,7 +60,7 @@ function BookingCard({ posts, setShowModalApprove }) {
       formData.append("attachment", currentEdit.attachment);
     axios
       .patch(
-        `http://localhost:5000/api/v1/transaction-user-upload/${currentEdit.idTransaction}`,
+        `https://backend-dewetour.herokuapp.com/api/v1/transaction-user-upload/${currentEdit.idTransaction}`,
         formData,
         config
       )
@@ -91,7 +91,7 @@ function BookingCard({ posts, setShowModalApprove }) {
     // e.preventDefault();
     axios
       .patch(
-        `http://localhost:5000/api/v1/transaction-user-agree/${id}`,
+        `https://backend-dewetour.herokuapp.com/api/v1/transaction-user-agree/${id}`,
         { status: "Waiting Approve" },
         config
       )
@@ -107,7 +107,7 @@ function BookingCard({ posts, setShowModalApprove }) {
     formData.append("attachment", fileObj);
     axios
       .patch(
-        `http://localhost:5000/api/v1/transaction-admin/${id}`,
+        `https://backend-dewetour.herokuapp.com/api/v1/transaction-admin/${id}`,
         formData,
         config
       )
@@ -177,7 +177,7 @@ function BookingCard({ posts, setShowModalApprove }) {
               src={
                 fileURL
                   ? fileURL
-                  : `http://localhost:5000/image/${currentEdit.attachment}`
+                  : `https://backend-dewetour.herokuapp.com/image/${currentEdit.attachment}`
               }
               className="w-full"
               alt="image"
@@ -317,7 +317,7 @@ function BookingCard({ posts, setShowModalApprove }) {
                   src={`${
                     fileURL
                       ? fileURL
-                      : `http://localhost:5000/image/${detail.attachment}`
+                      : `https://backend-dewetour.herokuapp.com/image/${detail.attachment}`
                   }`}
                   className="w-full"
                   alt="image"
@@ -499,7 +499,7 @@ function BookingCard({ posts, setShowModalApprove }) {
                 <div className="flex flex-col h-full w-full">
                   {val.attachment ? (
                     <img
-                      src={`http://localhost:5000/image/${val.attachment}`}
+                      src={`https://backend-dewetour.herokuapp.com/image/${val.attachment}`}
                       className="w-full"
                       alt="image"
                     />

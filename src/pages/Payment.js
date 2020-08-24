@@ -16,7 +16,7 @@ function Payment() {
   };
   const getData = async () => {
     const result = await axios.get(
-      `http://localhost:5000/api/v1/transaction-waiting/${id}`, config
+      `https://backend-dewetour.herokuapp.com/api/v1/transaction-waiting/${id}`, config
     );
     return result;
   };

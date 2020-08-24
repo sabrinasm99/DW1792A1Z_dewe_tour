@@ -30,7 +30,7 @@ function ModalRegister({ setShowModalRegister }) {
       setWarning("Please fill out this field");
     } else {
       axios
-        .post("http://localhost:5000/api/v1/register", inputRegister)
+        .post("https://backend-dewetour.herokuapp.com/api/v1/register", inputRegister)
         .then((res) => {
           localStorage.setItem("email", res.data.data.email);
           localStorage.setItem("token", res.data.data.token);

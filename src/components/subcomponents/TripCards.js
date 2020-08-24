@@ -18,7 +18,7 @@ function TripCards({ posts }) {
           className="bg-white rounded-md p-2 relative cursor-pointer"
         >
           <img
-            src={`http://localhost:5000/image/${val.image}`}
+            src={`https://backend-dewetour.herokuapp.com/image/${val.image}`}
             alt={val.image}
             className="w-full"
           />

@@ -7,7 +7,7 @@ import axios from "axios";
 
 function ListTransaction() {
   const getData = async () => {
-    const result = await axios.get("http://localhost:5000/api/v1/orders");
+    const result = await axios.get("https://backend-dewetour.herokuapp.com/api/v1/orders");
     return result;
   };
 
