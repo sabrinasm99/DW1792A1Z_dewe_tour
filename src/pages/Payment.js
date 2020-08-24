@@ -16,23 +16,23 @@ function Payment() {
   };
   const getData = async () => {
     const result = await axios.get(
-      `http://localhost:5000/api/v1/transaction/${id}`, config
+      `http://localhost:5000/api/v1/transaction-waiting/${id}`, config
     );
     return result;
   };
-  const { isLoading, data, error } = useQuery("detailTransaction", getData);
+  const { isLoading, data, error } = useQuery("waitingTransaction", getData);
   if (isLoading)
     return (
       <div className="flex justify-center">
         <h1 className="text-2xl font-semibold">Loading...</h1>
       </div>
     );
-
+  const array = data.data.data;
   return (
     <>
       <HeaderPage />
       <PaymentContent posts={data} />
-      <Footer />
+      <Footer posts={array} />
     </>
   );
 }

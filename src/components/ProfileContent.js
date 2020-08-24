@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import name from "../image/name.svg";
 import email from "../image/email.svg";
 import phone from "../image/phone.svg";
 import place from "../image/place.svg";
-import userprofile from "../image/userprofile.png";
 import BookingCard from "./subcomponents/BookingCard";
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -25,7 +24,7 @@ function ProfileContent({ posts }) {
   };
   const getData = async () => {
     const result = await axios.get(
-      `http://localhost:5000/api/v1/transaction-by-name/${userId}`,
+      `http://localhost:5000/api/v1/transaction-approve/${userId}`,
       config
     );
     return result;
@@ -231,7 +230,7 @@ function ProfileContent({ posts }) {
               </div>
             </div>
             <div className="w-1/3 flex flex-col">
-              {image ? (
+              {image !== "null" ? (
                 <img
                   src={`http://localhost:5000/image/${image}`}
                   className="rounded"
@@ -274,7 +273,7 @@ function ProfileContent({ posts }) {
         {data.data.data.length > 0 ? (
           <BookingCard posts={data} />
         ) : (
-          <div className="mt-8">No Transaction</div>
+          <div className="mt-8">No History Trip</div>
         )}
       </div>
       {modalPhoto}

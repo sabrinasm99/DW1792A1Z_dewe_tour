@@ -20,7 +20,7 @@ function App() {
 
   return (
     <Router>
-      {showModalLogin && <ModalLogin setShowModalLogin={setShowModalLogin} />}
+      {showModalLogin && <ModalLogin setShowModalLogin={setShowModalLogin} setShowModalRegister={setShowModalRegister} />}
       {showModalRegister && (
         <ModalRegister setShowModalRegister={setShowModalRegister} />
       )}

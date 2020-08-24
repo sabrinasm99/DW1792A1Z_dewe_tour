@@ -11,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
   const history = useHistory();
-  const { image, orderId } = localStorage;
+  const { image, userId } = localStorage;
 
   const [showModalUser, setShowModalUser] = useState(false);
   const submitLogout = () => {
@@ -114,7 +114,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       <div
         className={`${
           showModalUser && localStorage.role === "User" ? "block" : "hidden"
-        } absolute bg-white py-3 rounded font-bold`}
+        } absolute bg-white py-3 rounded font-bold shadow-md`}
         style={{ top: "75px", left: "1143px" }}
       >
         <div className="px-4">
@@ -124,7 +124,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
               <h2 className="flex items-center">Profile</h2>
             </div>
           </Link>
-          <Link to={`/payment/${orderId}`}>
+          <Link to={`/payment/${userId}`}>
             <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
@@ -145,7 +145,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
           <img src={triangle} />
         </div>
       </div>
-      <div
+      {/* <div
         className={`${
           showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
         } absolute bg-white py-3 rounded font-bold`}
@@ -153,7 +153,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
       >
         <div className="px-4">
           <Link to="/income-trip">
-            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
+            <div className="flex py-1 px-3 cursor-pointer">
               <img src={journey} className="mr-2" />
               <h2 className="flex items-center">Trip</h2>
             </div>
@@ -162,7 +162,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
         <hr />
         <div className="px-4">
           <div
-            className="flex py-1 px-3 cursor-pointer hover:bg-blue-200"
+            className="flex py-1 px-3 cursor-pointer"
             onClick={submitLogout}
           >
             <img src={logout} className="mr-2" />
@@ -172,7 +172,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
         <div className="absolute" style={{ top: "-11px", right: "2px" }}>
           <img src={triangle} />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

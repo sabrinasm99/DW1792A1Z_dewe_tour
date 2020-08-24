@@ -18,11 +18,12 @@ function ListTransaction() {
         <h1 className="text-2xl font-semibold">Loading...</h1>
       </div>
     );
+    const array = data.data.data;
   return (
     <>
       <HeaderPage />
       <ListTransactionContent posts={data} />
-      <Footer />
+      <Footer posts={array} />
     </>
   );
 }

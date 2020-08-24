@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import search from "../image/search.svg";
 import BookingCard from "./subcomponents/BookingCard";
-import { useQuery } from "react-query";
 import axios from "axios";
 
 function ListTransactionContent({ posts }) {
@@ -27,43 +26,53 @@ function ListTransactionContent({ posts }) {
       })
       .catch((err) => console.log(err));
   };
-  let newListTransaction = posts.data.data.map((val) => {
-    return (
-      <div
-        key={val.id}
-        className="flex border-b text-sm"
-        style={
-          val.id % 2 === 0
-            ? { borderColor: "#B7B7B7" }
-            : { borderColor: "#B7B7B7", backgroundColor: "#F9F9F9" }
-        }
-      >
-        <div className="w-1/6 p-3">{val.id}</div>
-        <div className="w-1/6 p-3">{val.user.fullName}</div>
-        <div className="w-1/6 p-3">{val.trip.title}</div>
-        <div className="w-1/6 p-3">{val.attachment}</div>
+
+  let newListTransaction = null;
+  if (posts.data.data.length === 0) {
+    newListTransaction = (
+      <h1 className='flex justify-center items-center'>
+        No List Transaction
+      </h1>
+    )
+  } else {
+    newListTransaction = posts.data.data.map((val, index) => {
+      return (
         <div
-          className="w-1/6 p-3"
+          key={val.id}
+          className="flex border-b text-sm"
           style={
-            val.status === "Waiting Approve"
-              ? { color: "#F7941E" }
-              : val.status === "Approve"
-              ? { color: "#0ACF83" }
-              : { color: "#FF0742" }
+            val.id % 2 === 0
+              ? { borderColor: "#B7B7B7" }
+              : { borderColor: "#B7B7B7", backgroundColor: "#F9F9F9" }
           }
         >
-          {val.status}
+          <div className="w-1/6 p-3 flex items-center">{index + 1}</div>
+          <div className="w-1/6 p-3 flex items-center">{val.user.fullName}</div>
+          <div className="w-1/6 p-3 flex items-center">{val.trip.title}</div>
+          <div className="w-1/6 p-3 flex items-center">{val.attachment}</div>
+          <div
+            className="w-1/6 p-3 flex items-center"
+            style={
+              val.status === "Waiting Approve"
+                ? { color: "#F7941E" }
+                : val.status === "Approve"
+                ? { color: "#0ACF83" }
+                : { color: "#FF0742" }
+            }
+          >
+            {val.status}
+          </div>
+          <div className="w-1/6 p-3 flex items-center">
+            <img
+              src={search}
+              className="cursor-pointer"
+              onClick={() => clickDetail(val.id)}
+            />
+          </div>
         </div>
-        <div className="w-1/6 p-3">
-          <img
-            src={search}
-            className="cursor-pointer"
-            onClick={() => clickDetail(val.id)}
-          />
-        </div>
-      </div>
-    );
-  });
+      );
+    });
+  }
   let modalApprove = null;
   if (showModalApprove)
     modalApprove = (
@@ -77,7 +86,10 @@ function ListTransactionContent({ posts }) {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <BookingCard posts={detailTransaction} setShowModalApprove={setShowModalApprove} />
+          <BookingCard
+            posts={detailTransaction}
+            setShowModalApprove={setShowModalApprove}
+          />
         </div>
         <div
           onClick={closeModalApprove}
@@ -99,7 +111,7 @@ function ListTransactionContent({ posts }) {
         <h1 className="font-bold text-2xl">Incoming Transaction</h1>
         <div className="bg-white rounded mt-5">
           <div
-            className="flex border-b font-bold"
+            className="flex border-b font-bold bg-blue-300 rounded-t"
             style={{ borderColor: "#B7B7B7" }}
           >
             <div className="w-1/6 p-3">No</div>

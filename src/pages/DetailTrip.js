@@ -28,7 +28,7 @@ function DetailTrip({ setShowModalLogin, setShowModalRegister }) {
         setShowModalLogin={setShowModalLogin}
         setShowModalRegister={setShowModalRegister}
       />
-      <DetailTripContent posts={data} />
+      <DetailTripContent posts={data} setShowModalLogin={setShowModalLogin} />
       <Footer />
       <div className="absolute" style={{ top: "33%", right: 0 }}>
         <img src={hibiscus} alt="hibiscus" />

@@ -5,7 +5,7 @@ import hibiscusmodal from "../../image/hibiscusmodal.svg";
 import palmmodal from "../../image/palmmodal.svg";
 import axios from "axios";
 
-function ModalLogin({ setShowModalLogin }) {
+function ModalLogin({ setShowModalLogin, setShowModalRegister }) {
   const location = useLocation();
   const history = useHistory();
   const currentPathname = location.pathname;
@@ -34,6 +34,11 @@ function ModalLogin({ setShowModalLogin }) {
         history.push("/list-transaction");
       }
     });
+  };
+
+  const clickHere = () => {
+    setShowModalLogin(false);
+    setShowModalRegister(true);
   };
 
   return (
@@ -93,7 +98,9 @@ function ModalLogin({ setShowModalLogin }) {
         </div>
         <h3 className="text-sm mt-3 font-light" style={{ color: "#B1B1B1" }}>
           Don't have an account? Click{" "}
-          <p className="font-bold inline cursor-pointer">Here</p>
+          <p onClick={clickHere} className="font-bold inline cursor-pointer">
+            Here
+          </p>
         </h3>
         <div className="absolute" style={{ top: 0, left: 0 }}>
           <img src={palmmodal} />

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import FormData from 'form-data';
 
 function AddTripContent({ posts }) {
   const [inputTrip, setInputTrip] = useState({
@@ -59,7 +58,6 @@ function AddTripContent({ posts }) {
     axios
       .post("http://localhost:5000/api/v1/trip", formData, config)
       .then((res) => {
-        console.log(res);
         const newInputTrip = {
           title: "",
           countryId: "",

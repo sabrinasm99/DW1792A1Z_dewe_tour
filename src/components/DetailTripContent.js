@@ -11,8 +11,8 @@ import photo2 from "../image/sydney1.png";
 import photo3 from "../image/sydney2.png";
 import photo4 from "../image/sydney3.png";
 
-function DetailTripContent(props) {
-  let oriPrice = props.posts.data.data.price;
+function DetailTripContent({ posts, setShowModalLogin }) {
+  let oriPrice = posts.data.data.price;
   const history = useHistory();
   const { token, userId } = localStorage;
   const { id } = useParams();
@@ -22,7 +22,7 @@ function DetailTripContent(props) {
     total: oriPrice,
     status: "Waiting Payment",
     tripId: +id,
-    bookingDate: (new Date()).toString().split(" ").slice(0, 4).join(" "),
+    bookingDate: new Date().toString().split(" ").slice(0, 4).join(" "),
   });
 
   const config = {
@@ -32,13 +32,16 @@ function DetailTripContent(props) {
   };
   const submitBooking = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/v1/transaction", input, config)
-      .then((res) => {
-        localStorage.setItem('orderId', res.data.data.id)
-        history.push(`/payment/${res.data.data.id}`);
-      })
-      .catch((err) => console.log(err));
+    if (!token) {
+      setShowModalLogin(true);
+    } else {
+      axios
+        .post("http://localhost:5000/api/v1/transaction", input, config)
+        .then((res) => {
+          history.push(`/payment/${userId}`);
+        })
+        .catch((err) => console.log(err));
+    }
   };
   const addQty = () => {
     const newInput = {
@@ -61,7 +64,7 @@ function DetailTripContent(props) {
     }
   };
 
-  let detail = props.posts.data.data;
+  let detail = posts.data.data;
 
   return (
     <div className="px-56">

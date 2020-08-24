@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import icon from "../image/icon.svg";
-import fotoprofile from "../image/fotoprofile.png";
 import user from "../image/user.svg";
 import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
@@ -12,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
   const [showModalUser, setShowModalUser] = useState(false);
   const history = useHistory();
-  const { role, image, orderId } = localStorage;
+  const { role, image, userId } = localStorage;
 
   const submitLogout = () => {
     localStorage.clear();
@@ -86,26 +85,26 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       <div
         className={`${
           showModalUser && localStorage.role === "User" ? "block" : "hidden"
-        } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1150px" }}
+        } absolute bg-white py-3 rounded font-bold shadow-md`}
+        style={{ top: "75px", left: "1143px" }}
       >
-        <div className="px-6">
+        <div className="px-4">
           <Link to="/profile">
-            <div className="flex py-1 cursor-pointer">
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={user} className="mr-2" />
               <h2 className="flex items-center">Profile</h2>
             </div>
           </Link>
-          <Link to={`/payment/${orderId}`}>
-            <div className="flex py-1 cursor-pointer">
+          <Link to={`/payment/${userId}`}>
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={bill} className="mr-2" />
               <h2 className="">Pay</h2>
             </div>
           </Link>
         </div>
         <hr />
-        <div className="px-6">
-          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+        <div className="px-4">
+          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
@@ -117,20 +116,20 @@ function HeaderPage({ setShowModalLogin, setShowModalRegister }) {
       <div
         className={`${
           showModalUser && localStorage.role === "Admin" ? "block" : "hidden"
-        } absolute bg-white py-1 rounded font-bold`}
-        style={{ top: "75px", left: "1150px" }}
+        } absolute bg-white py-3 rounded font-bold shadow-md`}
+        style={{ top: "75px", left: "1143px" }}
       >
-        <div className="px-6">
+        <div className="px-4">
           <Link to="/income-trip">
-            <div className="flex py-1 cursor-pointer">
+            <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200">
               <img src={journey} className="mr-2" />
               <h2 className="flex items-center">Trip</h2>
             </div>
           </Link>
         </div>
         <hr />
-        <div className="px-6">
-          <div className="flex py-1 cursor-pointer" onClick={submitLogout}>
+        <div className="px-4">
+          <div className="flex py-1 px-3 cursor-pointer hover:bg-blue-200" onClick={submitLogout}>
             <img src={logout} className="mr-2" />
             <h2>Logout</h2>
           </div>
