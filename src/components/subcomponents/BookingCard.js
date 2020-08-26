@@ -38,7 +38,10 @@ function BookingCard({ posts, setShowModalApprove }) {
 
   const openModalPhoto = (id) => {
     axios
-      .get(`https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`, config)
+      .get(
+        `https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`,
+        config
+      )
       .then((res) => {
         const { id, attachment } = res.data.data;
         const newCurrentEdit = {
@@ -88,7 +91,6 @@ function BookingCard({ posts, setShowModalApprove }) {
     setModalPayment(!modalPayment);
   };
   const clickPay = (id) => {
-    // e.preventDefault();
     axios
       .patch(
         `https://backend-dewetour.herokuapp.com/api/v1/transaction-user-agree/${id}`,
@@ -97,8 +99,9 @@ function BookingCard({ posts, setShowModalApprove }) {
       )
       .then((res) => {
         setModalPayment(!modalPayment);
+        setMessage("");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setMessage(err.response.data.message));
   };
 
   const clickApprove = (id) => {
