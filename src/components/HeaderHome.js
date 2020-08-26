@@ -114,7 +114,7 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
               />
               <button
                 onClick={submitSearch}
-                className="rounded-r-md flex items-center justify-center font-medium text-lg"
+                className="rounded-r-md flex items-center justify-center font-medium text-lg focus:outline-none"
                 style={{ width: "10%", backgroundColor: "#FFAF00" }}
               >
                 Search
