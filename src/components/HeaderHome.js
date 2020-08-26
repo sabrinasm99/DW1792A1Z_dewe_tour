@@ -1,23 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import icon from "../image/icon.svg";
-import fotoprofile from "../image/fotoprofile.png";
 import user from "../image/user.svg";
 import bill from "../image/bill.svg";
 import logout from "../image/logout.svg";
 import triangle from "../image/triangle.svg";
-import journey from "../image/journey.svg";
 import { FaUserCircle } from "react-icons/fa";
+import { onSearch } from "../actions/searchAction";
 
 function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
   const history = useHistory();
   const { image, userId } = localStorage;
-
   const [showModalUser, setShowModalUser] = useState(false);
+  const [search, setSearch] = useState("");
+
   const submitLogout = () => {
     localStorage.clear();
     setShowModalUser(!showModalUser);
     history.push("/");
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const submitSearch = () => {
+    onSearch(search);
   };
 
   return (
@@ -100,13 +108,17 @@ function HeaderHome({ setShowModalLogin, setShowModalRegister }) {
                 className="bg-white rounded-l-md text-gray-800 focus:outline-none pl-3"
                 style={{ width: "90%" }}
                 type="search"
+                value={search}
+                name="search"
+                onChange={handleSearch}
               />
-              <div
+              <button
+                onClick={submitSearch}
                 className="rounded-r-md flex items-center justify-center font-medium text-lg"
                 style={{ width: "10%", backgroundColor: "#FFAF00" }}
               >
                 Search
-              </div>
+              </button>
             </div>
           </div>
         </div>

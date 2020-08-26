@@ -9,7 +9,9 @@ import axios from "axios";
 
 function Home({ setShowModalLogin, setShowModalRegister }) {
   const getData = async () => {
-    const result = await axios.get("https://backend-dewetour.herokuapp.com/api/v1/trips");
+    const result = await axios.get(
+      "https://backend-dewetour.herokuapp.com/api/v1/trips"
+    );
     return result;
   };
 
