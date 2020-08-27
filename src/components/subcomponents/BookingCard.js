@@ -37,11 +37,9 @@ function BookingCard({ posts, setShowModalApprove }) {
   };
 
   const openModalPhoto = (id) => {
+    setMessage("");
     axios
-      .get(
-        `https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`,
-        config
-      )
+      .get(`https://backend-dewetour.herokuapp.com/api/v1/transaction/${id}`, config)
       .then((res) => {
         const { id, attachment } = res.data.data;
         const newCurrentEdit = {
@@ -591,6 +589,9 @@ function BookingCard({ posts, setShowModalApprove }) {
           >
             PAY
           </button>
+          <div className="flex">
+            <h3 className="ml-auto text-sm text-red-600">{message}</h3>
+          </div>
         </div>
       );
     });
